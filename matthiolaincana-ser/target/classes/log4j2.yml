@@ -1,0 +1,58 @@
+Configuration:
+  #配置项名称
+  name: MatthiolaIncana
+  #全局日志级别
+  status: warn
+  #自动检测修改配置间隔秒数
+  monitorInterval: 1800
+  properties:
+    property:
+      - name: FILE_NAME
+        value: target/LOG-yaml.log
+      - name: DEFAULT_PATTERN
+        value: "%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint}  %clr{%-5level} %clr{${sys:PID}}{magenta} %clr{[%15.15t]}{faint} %X{user} %clr{%logger:%L{36}}{cyan} %clr{:}{faint} %m%n%xwEx"
+  #日志输出的方式
+  appenders:
+    #将日志打印到控制台
+    Console:
+      name: Console
+      target: SYSTEM_OUT
+      PatternLayout:
+        #Pattern: "%clr{%date{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%-5level} %clr{${sys:PID}}{magenta} %clr{[%t]}{faint} %clr{%logger:%L{36}}{cyan} - %msg%n"
+        Pattern: ${DEFAULT_PATTERN}
+    #用来定义输出到指定位置的文件的Appender
+    File:
+      name: File
+      fileName: ${FILE_NAME}
+      PatternLayout:
+        Pattern: ${DEFAULT_PATTERN}
+      Filters:
+        ThresholdFilter:
+          level: error
+    #将日志打印到文件，文件可以回滚保存
+      #RollingFile:
+      #name: f
+      #Routing:
+      #name: asd
+  #指定日志，每个logger与Appender关联
+  Loggers:
+    #自定义的子日志
+    logger:
+          #指定该Logger所适用的类或者类所在的包全路径,继承自Root节点
+        - name: com.zhao.www
+          #日志输出级别
+          level: debug
+          #日志是否在父Logger中输出
+          additivity: false
+          #指定该日志输出到哪个Appender
+          AppenderRef:
+            ref: Console
+        - name: com.mysql
+          level: info
+        - name: org
+          level: info
+    #指定项目的根日志，如果没有单独指定Logger，那么就会默认使用该Root日志输出
+    Root:
+      level: error
+      AppenderRef:
+        - ref: Console
