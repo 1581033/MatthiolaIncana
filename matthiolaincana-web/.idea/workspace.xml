@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e9d9b264-fcbb-4a49-bd3a-858a198086a9" name="Default Changelist" comment="first commit" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JsBowerSettings">
+    <bower-package value="" />
+    <bower.json value="" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="22ir7sJYXKTbc3TLjRbSJieBNLE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
+    <property name="ts.external.directory.path" value="D:\Software\WebStorm 2021.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JavaTest\tastvite\testvites\src\components" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <package-manager value="npm" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e9d9b264-fcbb-4a49-bd3a-858a198086a9" name="Default Changelist" comment="" />
+      <created>1640331086047</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1640331086047</updated>
+      <workItem from="1640331088142" duration="593000" />
+      <workItem from="1640331704749" duration="236000" />
+      <workItem from="1640331998244" duration="8000" />
+      <workItem from="1640332019735" duration="171000" />
+      <workItem from="1640332220546" duration="3000" />
+      <workItem from="1640332292656" duration="11000" />
+      <workItem from="1640332315229" duration="303000" />
+      <workItem from="1640333660009" duration="4649000" />
+      <workItem from="1640339455731" duration="20000" />
+      <workItem from="1640339552021" duration="12000" />
+      <workItem from="1640339589104" duration="1974000" />
+      <workItem from="1640394340335" duration="720000" />
+      <workItem from="1640396778621" duration="24812000" />
+      <workItem from="1640567670863" duration="120000" />
+      <workItem from="1640594528517" duration="194000" />
+      <workItem from="1640675529614" duration="11211000" />
+      <workItem from="1640691621924" duration="3073000" />
+      <workItem from="1640740126924" duration="10318000" />
+      <workItem from="1640756199391" duration="11817000" />
+      <workItem from="1640828889433" duration="1194000" />
+      <workItem from="1640842827646" duration="1473000" />
+      <workItem from="1640853803855" duration="1101000" />
+      <workItem from="1640912571114" duration="21187000" />
+      <workItem from="1641258977433" duration="3987000" />
+      <workItem from="1641353537955" duration="1707000" />
+      <workItem from="1641433596130" duration="888000" />
+      <workItem from="1641436536678" duration="117000" />
+      <workItem from="1641779705855" duration="32000" />
+      <workItem from="1641779749220" duration="1370000" />
+      <workItem from="1641782839176" duration="2277000" />
+      <workItem from="1641793272191" duration="979000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1641786236365</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1641786236365</updated>
+    </task>
+    <task id="LOCAL-00002" summary="first commit">
+      <created>1641786368102</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1641786368102</updated>
+    </task>
+    <task id="LOCAL-00003" summary="first commit">
+      <created>1641793913853</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1641793913853</updated>
+    </task>
+    <task id="LOCAL-00004" summary="first commit">
+      <created>1641794042742</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1641794042742</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
