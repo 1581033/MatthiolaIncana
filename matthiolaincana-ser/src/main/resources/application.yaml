@@ -22,9 +22,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://39.100.203.174:3316/test_one?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+      url: jdbc:mysql://127.0.0.1:3316/test_one?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
       username: root
-      password: xijia@203.174
+      password: 123456
       initial-size: 5
       min-idle: 5
       max-active: 20
@@ -53,8 +53,8 @@ spring:
         url-pattern: /druid/*
   redis:
     host: 127.0.0.1
-    port: 11111
-    password: 1234qwerASDF~
+    port: 6379
+    password:
     # 连接超时时间（毫秒）
     timeout: 5000
     lettuce:
