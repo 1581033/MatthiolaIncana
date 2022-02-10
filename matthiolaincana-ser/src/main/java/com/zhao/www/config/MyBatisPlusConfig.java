@@ -26,17 +26,17 @@ public class MyBatisPlusConfig implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
-        this.setFieldValByName("createTime",format,metaObject);
-        this.setFieldValByName("updateTime",format,metaObject);
+        Date date = new Date();
+        this.setFieldValByName("createTime",date,metaObject);
+        this.setFieldValByName("updateTime",date,metaObject);
         this.setFieldValByName("updateId","1",metaObject);
         this.setFieldValByName("creatorId","1",metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
-        this.setFieldValByName("updateTime",format,metaObject);
+        Date date = new Date();
+        this.setFieldValByName("updateTime",date,metaObject);
         this.setFieldValByName("updateId","1",metaObject);
     }
 }

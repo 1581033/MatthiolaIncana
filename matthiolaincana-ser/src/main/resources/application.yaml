@@ -1,7 +1,21 @@
+# 开发环境配置
 server:
+  # 服务器的HTTP端口，默认为80
   port: 9001
   servlet:
+    # 应用的访问路径
     context-path: /api
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 连接数满后的排队数，默认为100
+    accept-count: 100
+    threads:
+      # tomcat最大线程数，默认为200
+      max: 800
+      # Tomcat启动初始化的线程数，默认值10
+      min-spare: 10
+
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -13,20 +27,36 @@ mybatis-plus:
       logic-delete-value: 1
       logic-delete-field: deleted
 
+# Spring配置
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss.SSS
     time-zone: GMT+8
     locale: zh_CN
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 10MB
+      # 设置总上传的文件大小
+      max-request-size: 20MB
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: false
+  # 数据源配置
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3316/test_one?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+      url: jdbc:mysql://39.100.203.174:3316/test_one?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
       username: root
-      password: 123456
+      password: xijia@203.174
+      # 初始连接数
       initial-size: 5
+      # 最小连接池数量
       min-idle: 5
+      # 最大连接池数量
       max-active: 20
       # 配置获取连接等待超时的时间
       max-wait: 60000
@@ -34,6 +64,7 @@ spring:
       time-between-eviction-runs-millis: 60000
       # 配置一个连接在池中最小生存的时间，单位是毫秒
       min-evictable-idle-time-millis: 300000
+      # 配置检测连接是否有效
       validation-query: SELECT 1 FROM DUAL
       test-while-idle: true
       test-on-borrow: false
@@ -52,9 +83,9 @@ spring:
         enabled: true
         url-pattern: /druid/*
   redis:
-    host: 127.0.0.1
-    port: 6379
-    password:
+    host: matthiolaincanas.com
+    port: 15820
+    password: zhao15800
     # 连接超时时间（毫秒）
     timeout: 5000
     lettuce:
@@ -63,3 +94,4 @@ spring:
         max-wait: 500
         max-idle: 500
         min-idle: 0
+# matthiolaincanas.com 15820 zhao15800 39.100.203.174 xijia@203.174

@@ -1,18 +1,22 @@
 <template>
-  <a-menu :theme="props.settings.theme" mode="inline" :selectedKeys="[ $route.path ]" :openKeys="state.openKeys" @click="({ item, key, keyPath }) => $router.push({ path: key })">
+  <a-menu
+      :theme="props.settings.theme"
+      mode="inline"
+      :selectedKeys="[ $route.path ]"
+      :openKeys="state.openKeys"
+      @click="({ item, key, keyPath }) => $router.push({ path: key })"
+  >
     <template v-for="item in state.menus" :key="item.path">
       <template v-if="!item.hidden">
         <template v-if="!item.children">
           <a-menu-item :key="item.path">
             <template #icon>
-              <MyIcon :type="item.meta.icon" viewBox="0 0 1024 1024" />
+              <x-icon-font :type="item.meta.icon" viewBox="0 0 1024 1024" />
             </template>
             {{ item.meta.title }}
           </a-menu-item>
         </template>
-        <template v-else>
-          <sub-menu :key="item.path" :menu-info="item" />
-        </template>
+        <sub-menu v-else :key="item.path" :menu-info="item" />
       </template>
     </template>
   </a-menu>
@@ -40,20 +44,12 @@ const mainMenu = computed(() => store.getters.addRouters)
 onMounted(() => {
   const routes = mainMenu.value.find(item => item.path === '/')
   state.menus = (routes && routes.children) || []
-  route.matched.forEach((item,index) => {
-    if (item.path !== '/' && route.matched.length !== index - 1){
-      state.openKeys.push(item.path)
-    }
-  })
+  state.openKeys = route.matched.map((item) => item.path)
 })
 
 watch(route,() => {
   state.openKeys = []
-  route.matched.forEach(item => {
-    if (item.path !== '/'){
-      state.openKeys.push(item.path)
-    }
-  })
+  state.openKeys = route.matched.map((item) => item.path)
 })
 
 </script>

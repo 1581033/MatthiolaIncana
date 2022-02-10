@@ -35,7 +35,6 @@ export default {
     // 登录
     Login ({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
-        console.log(userInfo)
         login(userInfo).then(res => {
           if (res.code === 200){
             storage.set(ACCESS_TOKEN, res.result.token, 2 * 60 * 60 * 1000)

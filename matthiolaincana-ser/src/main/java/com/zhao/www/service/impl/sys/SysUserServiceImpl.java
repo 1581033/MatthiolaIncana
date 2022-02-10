@@ -1,5 +1,6 @@
 package com.zhao.www.service.impl.sys;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhao.www.entity.ServiceResult;
@@ -16,6 +17,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,13 +57,26 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public ServiceResult<?> inquireSysUserList(SysUserParam param) {
-        QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
+        /*QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
         if (StringUtils.hasLength(param.getName())){
             wrapper.like("name",param.getName());
         }
         Page<SysUser> page = new Page<>(1, 10);
-        Page<SysUser> userPage = sysUserMapper.selectPage(page, wrapper);
-        return ServiceResult.success(userPage);
+        Page<SysUser> userPage = sysUserMapper.selectPage(page, wrapper);*/
+        LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
+        if (StringUtils.hasLength(param.getName())){
+            queryWrapper.like(SysUser::getName,param.getName());
+        }
+        if (StringUtils.hasLength(param.getTelephone())){
+            queryWrapper.like(SysUser::getTelephone,param.getTelephone());
+        }
+        if (StringUtils.hasLength(param.getStatus())){
+            queryWrapper.eq(SysUser::getStatus,param.getStatus());
+        }
+        if (!CollectionUtils.isEmpty(param.getDateTime()) && param.getDateTime().size() > 1){
+            queryWrapper.between(SysUser::getName,param.getDateTime().get(0),param.getDateTime().get(1));
+        }
+        return ServiceResult.success(sysUserMapper.selectList(queryWrapper));
     }
 
     @Override
@@ -71,14 +86,12 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public ServiceResult<?> increaseSysUser(SysUserParam param) {
-        String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
         SysUser sysUser = new SysUser();
         sysUser.setName(param.getName());
         sysUser.setUsername(param.getUsername());
         sysUser.setAvatar(param.getAvatar());
         sysUser.setStatus(param.getStatus());
         sysUser.setTelephone(param.getTelephone());
-        sysUser.setCreateTime(format);
         return ServiceResult.success(sysUserMapper.insert(sysUser));
     }
 

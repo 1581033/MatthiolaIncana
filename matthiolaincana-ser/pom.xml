@@ -16,20 +16,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <repositories>
-        <repository>
-            <id>aperfect-local-maven</id>
-            <name>aperfect localmaven</name>
-            <url>http://119.29.171.71:8089/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -42,12 +28,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
+            <!--<exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
 
         <!-- spring安全 -->
@@ -75,10 +61,10 @@
         </dependency>
 
         <!-- 日志 -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -152,36 +138,6 @@
             <version>3.18.2</version>
         </dependency>
 
-        <!-- word -->
-        <dependency>
-            <groupId>com.aspose</groupId>
-            <artifactId>aspose.words</artifactId>
-            <version>18.10.0</version>
-            <classifier>jdk16</classifier>
-        </dependency>
-
-        <!-- excel -->
-        <dependency>
-            <groupId>com.aspose</groupId>
-            <artifactId>aspose.cells</artifactId>
-            <version>18.9.0</version>
-        </dependency>
-
-        <!-- pdf -->
-        <dependency>
-            <groupId>com.aspose</groupId>
-            <artifactId>aspose.pdf</artifactId>
-            <version>18.9.0</version>
-        </dependency>
-
-        <!-- ppt -->
-        <dependency>
-            <groupId>com.aspose</groupId>
-            <artifactId>aspose.slides</artifactId>
-            <version>16.7.0</version>
-            <type>pom</type>
-        </dependency>
-
         <!-- junit单元测试 -->
         <dependency>
             <groupId>junit</groupId>
@@ -200,7 +156,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.8</version>
+            <version>1.2.6</version>
         </dependency>
 
         <!-- 持久层框架 -->

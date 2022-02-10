@@ -28,10 +28,11 @@
 <script setup>
 import { TreeSelect, notification } from 'ant-design-vue'
 import {reactive, ref, onMounted} from "vue"
-import { inquireSysMenuList } from 'apis/SystemManagement/menumanagement'
-import { increaseSysRole, inquireSysRoleByMenu, updataSysRole } from 'apis/SystemManagement/rolemanagement'
+import { inquireSysRoleByMenu } from 'apis/SystemManagement/rolemanagement'
+import Api from 'apis/baseresponse'
 const SHOW_PARENT = TreeSelect.SHOW_PARENT
 const state = reactive({
+  requestApi: 'sysRole',
   visible: false,
   title: '添加角色',
   confirmLoading: false,
@@ -64,7 +65,7 @@ const formRef = ref()
 const emit = defineEmits(['select'])
 
 onMounted(() => {
-  inquireSysMenuList({ page: 1 }).then(res => {
+  Api.inquireList({ page: 1 },'sysMenu').then(res => {
     state.menuTreeData = res.result
   })
 })
@@ -91,7 +92,7 @@ const submitData = () => {
   formRef.value.validate().then((values) => {
     state.confirmLoading = true
     if (state.title === '添加角色'){
-      increaseSysRole(values).then(res => {
+      Api.increase(values,state.requestApi).then(res => {
         if (res.result === 1){
           notification.success({ message: '添加成功' })
         } else {
@@ -99,7 +100,7 @@ const submitData = () => {
         }
       })
     } else {
-      updataSysRole(data.datas).then(res => {
+      Api.updata(data.datas,state.requestApi).then(res => {
         notification.success({ message: '修改成功' })
       })
     }

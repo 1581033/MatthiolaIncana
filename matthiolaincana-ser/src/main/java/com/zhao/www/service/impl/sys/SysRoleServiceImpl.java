@@ -49,11 +49,9 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public ServiceResult<?> increaseSysRole(SysRoleParam param) {
-        String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
         String randomUUID = UUID.randomUUID().toString();
         SysRole sysRole = new SysRole();
         sysRole.setId(randomUUID);
-        sysRole.setCreateTime(format);
         sysRole.setRoleDescribe(param.getRoleDescribe());
         sysRole.setName(param.getName());
         sysRole.setStatus(param.getStatus());

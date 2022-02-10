@@ -1,5 +1,5 @@
 <template>
-  <div class="row-column-header-left">
+<!--  <div class="row-column-header-left">
     <a-breadcrumb class="row-column-header">
       <a-breadcrumb-item v-for="item in routes">
         <router-link :to="{ path: item.path }">
@@ -7,7 +7,7 @@
         </router-link>
       </a-breadcrumb-item>
     </a-breadcrumb>
-  </div>
+  </div>-->
   <div class="row-column-header-right">
     <a-dropdown placement="bottomRight">
       <template #overlay>
@@ -30,7 +30,6 @@
         <span class="row-column-header-username">{{ userName }}</span>
       </div>
     </a-dropdown>
-
   </div>
 </template>
 
@@ -85,15 +84,13 @@ const loginOut = () => {
 
 </script>
 <style lang="less" scoped>
-.row-column-header{
+.row-column-header-left{
   height: 64px;
   float: left;
   line-height: 64px;
 }
 .row-column-header-right{
   height: 64px;
-  padding-right: 20px;
-  float: right;
 }
 .row-column-header-username{
   font-size: 20px;

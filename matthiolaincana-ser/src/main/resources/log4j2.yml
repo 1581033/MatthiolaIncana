@@ -8,7 +8,7 @@ Configuration:
   properties:
     property:
       - name: FILE_NAME
-        value: target/LOG-yaml.log
+        value: LOG-yaml.log
       - name: DEFAULT_PATTERN
         value: "%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint}  %clr{%-5level} %clr{${sys:PID}}{magenta} %clr{[%15.15t]}{faint} %X{user} %clr{%logger:%L{36}}{cyan} %clr{:}{faint} %m%n%xwEx"
   #日志输出的方式

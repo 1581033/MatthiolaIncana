@@ -59,9 +59,6 @@ public class SysMenuServiceImpl implements SysMenuService {
 
     @Override
     public ServiceResult<?> increaseSysMenu(SysMenu param) {
-        String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
-        param.setCreateTime(format);
-        param.setUpdateTime(format);
         return ServiceResult.success(sysMenuMapper.insert(param));
     }
 

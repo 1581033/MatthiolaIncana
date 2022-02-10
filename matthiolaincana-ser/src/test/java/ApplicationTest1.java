@@ -3,9 +3,6 @@ import com.zhao.www.Application;
 import com.zhao.www.entity.model.sys.SysMenu;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,7 +21,7 @@ public class ApplicationTest1 {
 	private RedisTemplate<String, Object> redisTemplate;*/
 
 	@Test
-	public void contextLoads() throws SchedulerException {
+	public void contextLoads()  {
 		int kb = 1024;
 		System.out.println(Runtime.getRuntime().totalMemory() / kb);
 		System.out.println(Runtime.getRuntime().freeMemory() / kb);

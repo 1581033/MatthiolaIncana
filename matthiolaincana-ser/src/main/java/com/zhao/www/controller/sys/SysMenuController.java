@@ -43,7 +43,7 @@ public class SysMenuController {
     }
 
     @ApiOperation(value = "获取菜单表头部信息", notes = "获取菜单表头部信息")
-    @PostMapping("/inquireSysUserHeadList")
+    @PostMapping("/inquireSysMenuHeadList")
     public ServiceResult<?> inquireSysMenuHeadList(@RequestBody SysMenuParam param){
         return sysMenuService.inquireSysMenuHeadList(param);
     }

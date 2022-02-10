@@ -27,7 +27,7 @@
   >
     <template #bodyCell="{ column, text, record }">
       <template v-if="column && column.dataIndex === 'icon'">
-        <MyIcon :type="text" viewBox="0 0 1024 1024" style="color: #1890ff"/>
+        <x-icon-font :type="text" viewBox="0 0 1024 1024" style="color: #1890ff"/>
       </template>
       <template v-if="column && column.dataIndex === 'operation'">
         <a @click="$refs.addSysMenu.editData(record)">编辑</a>
@@ -49,9 +49,10 @@
 import { SearchOutlined, LockOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import { ref, onMounted, reactive, computed, nextTick} from 'vue'
 import { notification } from 'ant-design-vue'
-import { inquireSysMenuList, inquireSysMenuHeadList, deleteSysMenu } from 'apis/SystemManagement/menumanagement'
 import AddSysMenu from './modules/AddSysMenu.vue'
+import Api from 'apis/baseresponse'
 const state = reactive({
+  requestApi: 'sysMenu',
   dataSource: [],
   columns: [],
   editableData: [],
@@ -75,7 +76,7 @@ onMounted(() => {
 
 function getSysMenuHeadList() {
   state.tableLoding = true
-  inquireSysMenuHeadList(listQury).then(rs => {
+  Api.inquireHeadList(listQury,state.requestApi).then(rs => {
     state.columns = rs.result
     state.columns.push({
       title: '操作',
@@ -89,14 +90,14 @@ function getSysMenuHeadList() {
 
 function getSysMenuList(){
   state.tableLoding = true
-  inquireSysMenuList(listQury).then(res => {
+  Api.inquireList(listQury,state.requestApi).then(res => {
     state.dataSource = res.result
     state.tableLoding = false
   })
 }
 
 const deleteData = (values) => {
-  deleteSysMenu({ id: values }).then(res => {
+  Api.delete({ id: values },state.requestApi).then(res => {
     notification.success({ message: '删除成功' })
     getSysMenuList()
   })

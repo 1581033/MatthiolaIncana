@@ -1,35 +1,22 @@
 <template>
-  <a-layout style="height: 100%">
-    <a-layout-sider v-model:collapsed="collapsed" :theme="settings.theme" width="250">
-      <div class="ant-pro-sider-menu-logo" @click="$router.push({ path: '/' })" >
-        <MyIcon type="icon-dashboard" style="fontSize: 25px;color: #1890ff;" viewBox="0 0 1024 1024" />
-        <span v-show="!collapsed">首页</span>
-      </div>
-      <ant-manu :settings="settings"/>
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header style="background: #fff; padding: 0; border-bottom: 1px solid #ebeef5; box-shadow: 0 2px 12px 0 rgb(0 0 0 / 20%);">
-        <div style="float: left">
-          <MenuUnfoldOutlined v-if="collapsed" class="trigger" @click="collapsed = !collapsed"/>
-          <MenuFoldOutlined v-else class="trigger" @click="collapsed = !collapsed" />
-        </div>
-        <right-content/>
-      </a-layout-header>
-      <a-layout-content :style="{ padding: '12px', minHeight: '280px', backgroundColor: 'rgba(255,255,255,0.92)' }">
-        <router-view/>
-      </a-layout-content>
-    </a-layout>
-  </a-layout>
+  <pro-layout :settings="settings">
+    <template #header>
+      <right-content/>
+    </template>
+    <a-back-top />
+    <router-view/>
+  </pro-layout>
 </template>
 <script setup>
 import { useStore } from 'vuex'
-import AntManu from '@/components/antmenu/AntManu.vue'
+import ProLayout from 'components/ProLayout/prolayout.vue'
 import defaultSettings from '@/config/defaultSettings'
 import { CONTENT_WIDTH_TYPE, SIDEBAR_TYPE, TOGGLE_MOBILE_TYPE } from '@/store/mutation-types'
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { ref,reactive, watch } from 'vue'
 import RightContent from 'components/GlobalHeader/RightContent.vue'
 const settings = reactive({
+  icon: defaultSettings.iconfontUrl,
+  title: defaultSettings.title,
   // 布局类型
   layout: defaultSettings.layout,
   // CONTENT_WIDTH_TYPE
@@ -46,7 +33,6 @@ const settings = reactive({
   hideCopyButton: false
 })
 
-const collapsed = ref(false)
 const isMobile = ref(false)
 const store = useStore()
 

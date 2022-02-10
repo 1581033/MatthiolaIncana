@@ -1,14 +1,14 @@
 <template>
   <a-card style="margin-bottom: 20px">
     <a-form ref="formRefDex" layout="inline" :model="state.listQury">
-      <a-form-item label="用户名称" name="name">
-        <a-input v-model:value="state.listQury.name" placeholder="请输入用户名称" />
+      <a-form-item label="字典名称" name="name">
+        <a-input v-model:value="state.listQury.name" placeholder="请输入字典名称" />
       </a-form-item>
-      <a-form-item label="手机号码" name="telephone">
-        <a-input v-model:value="state.listQury.telephone" placeholder="请输入手机号" />
+      <a-form-item label="字典类型" name="code">
+        <a-input v-model:value="state.listQury.code" placeholder="请输入字典类型" />
       </a-form-item>
       <a-form-item label="状态" name="status">
-        <a-select v-model:value="state.listQury.status" style="width: 200px" placeholder="用户状态" allowClear>
+        <a-select v-model:value="state.listQury.status" style="width: 200px" placeholder="字典状态" allowClear>
           <a-select-option v-for="item in state.sysNormalDisable" :value="item.code">
             {{ item.value }}
           </a-select-option>
@@ -18,7 +18,7 @@
         <a-range-picker  v-model:value="state.listQury.dateTime" />
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" @click="getSysUserList">
+        <a-button type="primary" @click="getSysDictTypeList">
           <template #icon><SearchOutlined /></template>
           查询
         </a-button>
@@ -35,16 +35,20 @@
       :dataSource="state.dataSource"
       :columns="state.columns"
       :loading="state.tableLoding"
-      @addClick="$refs.addSysUser.addData()"
+      @addClick="$refs.addSysDistType.addData()"
       @restClick="restGetData"
   >
     <template #bodyCell="{ column, text, record }">
+      <template v-if="column && column.dataIndex === 'code'">
+        <a-button type="link" @click="$router.push({ path: '/SystemManagement/DictDataManagement/' + record.id })">{{ text }}</a-button>
+      </template>
       <template v-if="column && column.dataIndex === 'status'">
-        <span :class="[ text === '1' ? 'ant-badge-status-success' : 'ant-badge-status-default', 'ant-badge-status-dot'] " />
-        <span class="ant-badge-status-text">{{ text == '1' ? '已启用' : '未启用' }}</span>
+        <a-tag :color="state.sysNormalDisable.find((item) => text === item.code).listClass">
+          {{ state.sysNormalDisable.find((item) => text === item.code).value }}
+        </a-tag>
       </template>
       <template v-if="column && column.dataIndex === 'operation'">
-        <a @click="$refs.addSysUser.editData(record)">编辑</a>
+        <a @click="$refs.addSysDistType.editData(record)">编辑</a>
         <a-popconfirm
             title="你确定删除吗?"
             ok-text="确定"
@@ -56,22 +60,23 @@
       </template>
     </template>
   </x-tabel>
-  <add-sys-user ref="addSysUser" @select="getSysUserList" />
+  <add-sys-dist-type ref="addSysDistType" :sysNormalDisable="state.sysNormalDisable" @select="getSysDictTypeList" />
 </template>
 
 <script setup>
-import AddSysUser from './modules/AddSysUser.vue'
-import { notification } from 'ant-design-vue'
-import { SearchOutlined, LockOutlined, ReloadOutlined } from '@ant-design/icons-vue'
-import { ref, onMounted, reactive} from 'vue'
+import { SearchOutlined, LockOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons-vue'
+import {reactive, onMounted, ref} from "vue";
 import Api from 'apis/baseresponse'
+import {notification} from "ant-design-vue";
+import AddSysDistType from "./modules/AddSysDistType.vue";
 
 const state = reactive({
-  requestApi: 'sysUser',
+  requestApi: 'sysDictType',
   dataSource: [],
   columns: [],
   editableData: [],
   tableLoding: false,
+  visible: false,
   sysNormalDisable: [],
   listQury: {}
 });
@@ -79,7 +84,7 @@ const state = reactive({
 const formRefDex = ref()
 
 onMounted(() => {
-  getSysUserHeadList()
+  getSysDictTypeHeadList()
   getFilters()
 })
 
@@ -89,41 +94,43 @@ const getFilters = () => {
   })
 }
 
-function getSysUserHeadList() {
+const getSysDictTypeHeadList = () => {
   state.tableLoding = true
-  Api.inquireHeadList({},state.requestApi).then(res => {
-    state.columns = res.result
+  Api.inquireHeadList({},state.requestApi).then(rs => {
+    state.columns = rs.result
     state.columns.push({
       title: '操作',
       dataIndex: 'operation',
       width: '100px',
       align: 'center'
     })
-    getSysUserList()
+    getSysDictTypeList()
   })
 }
 
-function getSysUserList(){
+const getSysDictTypeList = () => {
+  state.tableLoding = true
   Api.inquireList(state.listQury,state.requestApi).then(res => {
     state.dataSource = res.result
-    /*state.dataSource.forEach((s,index) => s.key =  index)*/
     state.tableLoding = false
   })
 }
 
-const deleteData = (value) => {
-  Api.delete({ id: value },state.requestApi).then(res => {
+const deleteData = (values) => {
+  Api.delete({ id: values },state.requestApi).then(res => {
     notification.success({ message: '删除成功' })
-    getSysUserList()
+    getSysDictTypeList()
   })
 }
 
 const restGetData = () => {
   formRefDex.value.resetFields()
-  getSysUserList()
+  console.log(formRefDex.value)
+  getSysDictTypeList()
 }
 
 </script>
 
 <style lang="less" scoped>
+
 </style>

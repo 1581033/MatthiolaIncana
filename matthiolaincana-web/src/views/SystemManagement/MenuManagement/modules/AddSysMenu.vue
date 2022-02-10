@@ -87,7 +87,7 @@
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
 import { notification } from 'ant-design-vue'
-import { increaseSysMenu, updataSysMenu } from 'apis/SystemManagement/menumanagement'
+import Api from 'apis/baseresponse'
 const props = defineProps({
   treeData: Array
 })
@@ -95,6 +95,7 @@ const props = defineProps({
 const activeKey = ref('1')
 const tabPosition = ref('left')
 const state = reactive({
+  requestApi: 'sysMenu',
   visible: false,
   title: '添加菜单',
   confirmLoading: false,
@@ -153,7 +154,7 @@ const submitData = () => {
         break
     }
     if (state.title === '添加菜单'){
-      increaseSysMenu(values).then(res => {
+      Api.increase(values,state.requestApi).then(res => {
         if (res.result === 1){
           formRef.value.resetFields()
           notification.success({ message: '添加成功' })
@@ -165,7 +166,7 @@ const submitData = () => {
         state.confirmLoading = false
       })
     }else {
-      updataSysMenu(data.datas).then(res => {
+      Api.updata(data.datas,state.requestApi).then(res => {
         notification.success({ message: '修改成功' })
         state.visible = false
         state.confirmLoading = false

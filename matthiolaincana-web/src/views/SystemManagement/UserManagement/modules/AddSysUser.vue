@@ -28,13 +28,12 @@
 </template>
 
 <script setup>
-import { increaseSysUser, updataSysUser } from 'apis/SystemManagement/usermanagement'
-import { inquireSysRoleList } from 'apis/SystemManagement/rolemanagement'
-
+import Api from 'apis/baseresponse'
 import {onMounted, reactive, ref} from 'vue'
 import {notification} from "ant-design-vue";
 
 const state = reactive({
+  requestApi: 'sysUser',
   visible: false,
   title: '',
   confirmLoading: false,
@@ -50,7 +49,7 @@ const rules = [{
 }]
 
 onMounted(() => {
-  inquireSysRoleList({page: 1}).then(res => {
+  Api.inquireList({page: 1},'sysRole').then(res => {
     state.rolesTreeData = res.result
   })
 })
@@ -74,7 +73,7 @@ const submitData = () => {
   formRef.value.validate().then((values) => {
     state.confirmLoading = true
     if (state.title === '添加用户'){
-      increaseSysUser(values).then(res => {
+      Api.increase(values,state.requestApi).then(res => {
         if (res.result === 1){
           formRef.value.resetFields()
           notification.success({ message: '添加成功' })
@@ -86,7 +85,7 @@ const submitData = () => {
         state.confirmLoading = false
       })
     }else {
-      updataSysUser(data.datas).then(res => {
+      Api.updata(data.datas,state.requestApi).then(res => {
         notification.success({ message: '修改成功' })
         state.visible = false
         state.confirmLoading = false

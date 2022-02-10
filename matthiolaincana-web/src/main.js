@@ -8,15 +8,16 @@ import 'ant-design-vue/dist/antd.less'
 import './permission'
 import { createFromIconfontCN } from '@ant-design/icons-vue'
 import './global.less'
+import 'animate.css'
 import XTabel from 'components/Xtabel/Xtabel.vue'
 
-const MyIcon = createFromIconfontCN({
+const IconFont = createFromIconfontCN({
     scriptUrl: '//at.alicdn.com/t/font_2918935_u3lafdp4e0m.js', // 在 iconfont.cn 上生成
 });
 
 createApp(App)
     .component('x-tabel',XTabel)
-    .component('MyIcon',MyIcon)
+    .component('x-icon-font',IconFont)
     .use(store)
     .use(router)
     .use(Antd)

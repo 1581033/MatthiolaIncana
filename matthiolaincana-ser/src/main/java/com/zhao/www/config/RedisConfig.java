@@ -3,6 +3,7 @@ package com.zhao.www.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zhao.www.entity.model.sys.SysDictData;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -30,8 +31,8 @@ import java.time.Duration;
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
+    public <T> RedisTemplate<String, T> redisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, T> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
         //String序列化
         RedisSerializer<String> redisSerializer = new StringRedisSerializer();

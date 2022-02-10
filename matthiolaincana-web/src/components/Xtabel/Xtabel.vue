@@ -1,30 +1,31 @@
 <template>
   <a-card id="x-tabel">
-    <div style="font-size: 20px">
-      <div style="float: left;">
-        <a-button type="primary" size="middle" style="margin-right: 10px">
+    <div style="font-size: 20px;margin-bottom: 10px">
+      <a-space :size="state.spaceSize">
+        <a-button v-show="props.downloadOutlined" type="primary" size="middle">
           <template #icon>
             <DownloadOutlined />
           </template>
           导出
         </a-button>
-        <a-button type="primary" size="middle" style="margin-right: 10px">
+        <a-button v-show="props.uploadOutlined" type="primary" size="middle">
           <template #icon>
             <UploadOutlined />
           </template>
           导入
         </a-button>
-        <a-button type="primary" size="middle" style="margin-right: 10px" @click="emit('addClick')">
+        <a-button v-show="props.plusOutlined" type="primary" size="middle" @click="emit('addClick')">
           <template #icon>
             <PlusOutlined />
           </template>
           增加
         </a-button>
-      </div>
-      <div style="float: right;">
+        <slot name="content"></slot>
+      </a-space>
+      <a-space :size="state.spaceIconSize" style="float: right">
         <a-tooltip>
           <template #title>表格斑马纹</template>
-          <a-switch v-model:checked="state.checked" checked-children="开" un-checked-children="关" style="margin-right: 10px" @change="switchCherked" />
+          <a-switch v-model:checked="state.checked" checked-children="开" un-checked-children="关" @change="switchCherked" />
         </a-tooltip>
         <a-tooltip>
           <template #title>刷新</template>
@@ -55,7 +56,7 @@
           <FullscreenOutlined v-if="!state.isFull" class="icon-ccd" @click="showFull" />
           <FullscreenExitOutlined v-else class="icon-ccd" @click="delFull" />
         </a-tooltip>
-      </div>
+      </a-space>
     </div>
     <a-table
         v-bind="$attrs"
@@ -66,9 +67,12 @@
         rowKey="id"
         bordered
     >
-      <template v-for="(index, name) in $slots" #[name]="{ column, text, record }">
-        <slot :name="name" :column="column" :text="text" :record="record" />
+      <template #bodyCell="{ column, text, record }">
+        <slot name="bodyCell" :column="column" :text="text" :record="record" />
       </template>
+<!--      <template v-for="(index, name) in $slots" #[name]="{ column, text, record }">
+        <slot :name="name" :column="column" :text="text" :record="record" />
+      </template>-->
     </a-table>
   </a-card>
 </template>
@@ -76,10 +80,23 @@
 import { PlusOutlined, ReloadOutlined, UploadOutlined, DownloadOutlined, FullscreenExitOutlined, FullscreenOutlined, SettingOutlined, ColumnHeightOutlined } from '@ant-design/icons-vue'
 import { reactive, watch } from 'vue'
 import ColumnSetting from './columnSetting.vue'
-const emit = defineEmits(['addClick','restClick','columnSize','switchCherked'])
+import {notification} from "ant-design-vue";
+const emit = defineEmits(['addClick','restClick','columnSize','switchCherked','editClick','deleteClick'])
 const props = defineProps({
   columns: Array,
-  loading: Boolean
+  loading: Boolean,
+  downloadOutlined: {
+    type: Boolean,
+    default: true
+  },
+  plusOutlined: {
+    type: Boolean,
+    default: true
+  },
+  uploadOutlined: {
+    type: Boolean,
+    default: true
+  }
 })
 const state = reactive({
   columns: [],
@@ -88,6 +105,8 @@ const state = reactive({
   columnSize: 'default',
   rowClassName: null,
   isFull: false,
+  spaceSize: 10,
+  spaceIconSize: 20,
   menus: [
     {key: 'default',title: '默认'},
     {key: 'middle',title: '中等'},
@@ -145,7 +164,9 @@ const delFull = () => {
 </script>
 <style lang="less" scoped>
 .icon-ccd{
-  margin: 0 10px 20px 10px;
+  font-size: 22px;
+  margin-top: 6px;
+  /*margin: 0 10px 20px 10px;*/
 }
 /deep/.ant-popover-inner-content{
   padding: 8px 0;

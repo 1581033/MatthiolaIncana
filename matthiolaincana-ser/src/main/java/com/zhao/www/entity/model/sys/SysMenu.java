@@ -1,9 +1,6 @@
 package com.zhao.www.entity.model.sys;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.zhao.www.annotation.component.AntTabel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,17 +62,17 @@ public class SysMenu implements Serializable {
     @TableField("hidden_header_content")
     private String hiddenHeaderContent;
 
-    @TableField("creator_id")
+    @TableField(value = "creator_id", fill = FieldFill.INSERT)
     private String creatorId;
 
-    @TableField("create_time")
-    private String createTime;
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    private Date createTime;
 
-    @TableField("update_id")
+    @TableField(value = "update_id", fill = FieldFill.INSERT_UPDATE)
     private String updateId;
 
-    @TableField("update_time")
-    private String updateTime;
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
 
     @TableField("permission")
     private String permission;

@@ -1,15 +1,13 @@
 package com.zhao.www.entity.model.sys;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.zhao.www.annotation.component.AntTabel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,18 +23,17 @@ public class SysUser implements Serializable {
     @TableId(value = "id",type = IdType.ASSIGN_UUID)
     private String id;
 
-    @AntTabel(title = "名称")
+    @AntTabel(title = "用户昵称")
     @TableField("name")
     private String name;
 
-    @AntTabel(title = "账号")
+    @AntTabel(title = "用户名称")
     @TableField("user_name")
     private String username;
 
     @TableField("pass_word")
     private String password;
 
-    @AntTabel(title = "头像")
     @TableField("avatar")
     private String avatar;
 
@@ -44,7 +41,7 @@ public class SysUser implements Serializable {
     @TableField("status")
     private String status;
 
-    @AntTabel(title = "电话")
+    @AntTabel(title = "手机号码")
     @TableField("telephone")
     private String telephone;
 
@@ -57,10 +54,11 @@ public class SysUser implements Serializable {
     @TableField("deleted")
     private String deleted;
 
-    @TableField("create_time")
-    private String createTime;
+    @AntTabel(title = "创建时间")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    private Date createTime;
 
-    @TableField("creator_id")
+    @TableField(value = "creator_id", fill = FieldFill.INSERT)
     private String createId;
 
     @TableField(exist = false)

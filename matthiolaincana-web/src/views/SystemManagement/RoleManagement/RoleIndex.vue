@@ -49,11 +49,12 @@
 <script setup>
 import { SearchOutlined, LockOutlined, PlusOutlined, ReloadOutlined, FullscreenOutlined, SettingOutlined, ColumnHeightOutlined } from '@ant-design/icons-vue'
 import { onMounted, reactive} from 'vue'
-import { inquireSysRoleHeadList, inquireSysRoleList, deleteSysRole } from 'apis/SystemManagement/rolemanagement'
 import {notification} from "ant-design-vue"
 import AddSysRole from './modules/AddSysRole.vue'
+import Api from 'apis/baseresponse'
 
 const state = reactive({
+  requestApi: 'sysRole',
   dataSource: [],
   columns: [],
   editableData: [],
@@ -76,7 +77,7 @@ onMounted(() => {
 
 const getSysRoleHeadList = () =>{
   state.tableLoding = true
-  inquireSysRoleHeadList(listQury).then(res => {
+  Api.inquireHeadList(listQury,state.requestApi).then(res => {
     state.columns = res.result
     state.columns.push({
       title: '操作',
@@ -90,14 +91,14 @@ const getSysRoleHeadList = () =>{
 
 const getSysRoleList = () => {
   state.tableLoding = true
-  inquireSysRoleList(listQury).then(res => {
+  Api.inquireList(listQury,state.requestApi).then(res => {
     state.dataSource = res.result
     state.tableLoding = false
   })
 }
 
 const deleteData = (values) => {
-  deleteSysRole({ id: values }).then(res => {
+  Api.delete({ id: values },state.requestApi).then(res => {
     notification.success({ message: '删除成功' })
     getSysRoleList()
   })

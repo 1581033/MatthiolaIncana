@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,13 +41,13 @@ public class SysPermission implements Serializable {
     private String creatorId;
 
     @TableField("create_time")
-    private String createTime;
+    private Date createTime;
 
     @TableField("update_id")
     private String updateId;
 
     @TableField("update_time")
-    private String updateTime;
+    private Date updateTime;
 
     @TableField(exist = false)
     private List<String> actionList;
