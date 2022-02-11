@@ -24,15 +24,13 @@ public class SysMenu implements Serializable {
     @TableId(value = "id",type = IdType.ASSIGN_UUID)
     private String id;
 
-    @AntTabel(title = "路径")
+    @AntTabel(title = "组件路径")
     @TableField("path")
     private String path;
 
-    @AntTabel(title = "名称")
     @TableField("name")
     private String name;
 
-    @AntTabel(title = "组件")
     @TableField("component")
     private String component;
 
@@ -48,7 +46,7 @@ public class SysMenu implements Serializable {
     @TableField("hide_children_in_menu")
     private String hideChildrenInMenu;
 
-    @AntTabel(title = "标题")
+    @AntTabel(title = "菜单名称",sort = 1)
     @TableField("title")
     private String title;
 
@@ -65,6 +63,7 @@ public class SysMenu implements Serializable {
     @TableField(value = "creator_id", fill = FieldFill.INSERT)
     private String creatorId;
 
+    @AntTabel(title = "创建时间")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
@@ -81,7 +80,7 @@ public class SysMenu implements Serializable {
     private List<SysPermission> actionEntitySet;
 
     @TableField(exist = false)
-    private List<SysMenu> children = new ArrayList<>();
+    private List<SysMenu> children;
 
 }
 

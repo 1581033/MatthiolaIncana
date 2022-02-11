@@ -37,8 +37,10 @@ public class AntTabelColumn implements Serializable {
 
     private Boolean resizable;
 
-    public AntTabelColumn(String dataIndex,String title) {
-        this("center",false,1,dataIndex,title,200,true);
+    private Integer sort;
+
+    public AntTabelColumn(String dataIndex,String title,Integer sort) {
+        this("center",false,1,dataIndex,title,200,true,sort);
     }
 
     public static <T> List<AntTabelColumn> getTableLabel(Class<T> clazz){
@@ -46,8 +48,9 @@ public class AntTabelColumn implements Serializable {
                 .filter(field -> !ObjectUtils.isEmpty(field.getAnnotation(AntTabel.class)))
                 .map(field -> {
                     AntTabel annotation = field.getDeclaredAnnotation(AntTabel.class);
-                    return new AntTabelColumn(field.getName(),annotation.title());
+                    return new AntTabelColumn(field.getName(),annotation.title(),annotation.sort());
                 })
+                .sorted(Comparator.comparing(AntTabelColumn::getSort))
                 .collect(Collectors.toList());
     }
 

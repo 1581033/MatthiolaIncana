@@ -3,6 +3,7 @@ package com.zhao.www.entity.param.sys;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Matthiola incana
@@ -22,5 +23,7 @@ public class SysUserParam implements Serializable {
     private String status;
 
     private String telephone;
+
+    private List<String> dateTime;
 
 }

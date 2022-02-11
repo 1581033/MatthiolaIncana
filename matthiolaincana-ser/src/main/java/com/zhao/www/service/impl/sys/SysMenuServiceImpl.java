@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,6 +80,9 @@ public class SysMenuServiceImpl implements SysMenuService {
         list.forEach(item -> {
             if (item.getParentId().equals(parentId)){
                 listToTree(list,item,item.getId());
+                if (sysMenu.getChildren() == null){
+                    sysMenu.setChildren(new ArrayList<>());
+                }
                 sysMenu.getChildren().add(item);
             }
         });

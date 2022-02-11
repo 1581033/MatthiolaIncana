@@ -4,6 +4,8 @@ import com.zhao.www.entity.param.BaseParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * @author Matthiola incana
  * @create 2021/12/15 15:17
@@ -17,5 +19,7 @@ public class SysRoleParam extends BaseParam {
     private String status;
     private String roleDescribe;
     private String[] menus;
+
+    private List<String> dateTime;
 
 }

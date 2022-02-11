@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -42,9 +44,17 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public ServiceResult<?> inquireSysRoleList(SysRoleParam param) {
-        QueryWrapper<SysRole> wrapper = new QueryWrapper<>();
-        List<SysRole> list = sysRoleMapper.selectList(wrapper);
-        return ServiceResult.success(list);
+        LambdaQueryWrapper<SysRole> queryWrapper = new LambdaQueryWrapper<>();
+        if (StringUtils.hasLength(param.getName())){
+            queryWrapper.like(SysRole::getName,param.getName());
+        }
+        if (StringUtils.hasLength(param.getStatus())){
+            queryWrapper.eq(SysRole::getStatus,param.getStatus());
+        }
+        if (!CollectionUtils.isEmpty(param.getDateTime()) && param.getDateTime().size() > 1){
+            queryWrapper.between(SysRole::getCreateTime,param.getDateTime().get(0),param.getDateTime().get(1));
+        }
+        return ServiceResult.success(sysRoleMapper.selectList(queryWrapper));
     }
 
     @Override
@@ -57,15 +67,12 @@ public class SysRoleServiceImpl implements SysRoleService {
         sysRole.setStatus(param.getStatus());
         sysRoleMapper.insert(sysRole);
         if (param.getMenus().length > 0){
-            LambdaQueryWrapper<SysMenu> wrapper = new LambdaQueryWrapper<>();
-            wrapper.in(SysMenu::getId, (Object[]) param.getMenus()).or().in(SysMenu::getParentId, (Object[]) param.getMenus());
-            List<SysMenu> sysMenus = sysMenuMapper.selectList(wrapper);
-            sysMenus.forEach(s -> {
+            for (String menu : param.getMenus()) {
                 SysRoleMenu roleMenu = new SysRoleMenu();
                 roleMenu.setRoleId(randomUUID);
-                roleMenu.setMenuId(s.getId());
+                roleMenu.setMenuId(menu);
                 sysRoleMenuMapper.insert(roleMenu);
-            });
+            }
         }
         return ServiceResult.success(1);
     }
@@ -91,17 +98,12 @@ public class SysRoleServiceImpl implements SysRoleService {
         wrapper.eq(SysRoleMenu::getRoleId,param.getId());
         sysRoleMenuMapper.delete(wrapper);
         if (param.getMenus().length > 0){
-            LambdaQueryWrapper<SysMenu> wrapper1 = new LambdaQueryWrapper<>();
-            wrapper1.in(SysMenu::getId, (Object[]) param.getMenus())
-                    .or()
-                    .in(SysMenu::getParentId, (Object[]) param.getMenus());
-            List<SysMenu> sysMenus = sysMenuMapper.selectList(wrapper1);
-            sysMenus.forEach(s -> {
+            for (String menu : param.getMenus()) {
                 SysRoleMenu roleMenu = new SysRoleMenu();
                 roleMenu.setRoleId(param.getId());
-                roleMenu.setMenuId(s.getId());
+                roleMenu.setMenuId(menu);
                 sysRoleMenuMapper.insert(roleMenu);
-            });
+            }
         }
         return ServiceResult.success(1);
     }

@@ -43,9 +43,6 @@ public class SysRole  implements Serializable {
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
-    @TableField("deleted")
-    private String deleted;
-
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
