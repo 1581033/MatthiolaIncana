@@ -49,9 +49,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://39.100.203.174:3316/test_one?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+      url: jdbc:mysql://127.0.0.1:3316/test_one?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
       username: root
-      password: xijia@203.174
+      password: 123456
       # 初始连接数
       initial-size: 5
       # 最小连接池数量
@@ -83,8 +83,8 @@ spring:
         enabled: true
         url-pattern: /druid/*
   redis:
-    host: matthiolaincanas.com
-    port: 15820
+    host: 127.0.0.1
+    port: 1234
     password: zhao15800
     # 连接超时时间（毫秒）
     timeout: 5000
@@ -94,4 +94,4 @@ spring:
         max-wait: 500
         max-idle: 500
         min-idle: 0
-# matthiolaincanas.com 15820 zhao15800 39.100.203.174 xijia@203.174
+
