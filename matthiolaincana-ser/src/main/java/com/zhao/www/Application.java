@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author Matthiola incana
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @Log4j2
 @MapperScan("com.zhao.www.mapper")
 @EnableScheduling
+@EnableTransactionManagement
 @EnableGlobalMethodSecurity(prePostEnabled=true,securedEnabled = true)
 @SpringBootApplication
 public class Application {

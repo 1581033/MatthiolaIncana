@@ -2,8 +2,6 @@ package com.zhao.www.utils.json;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.zhao.www.entity.ServiceCode;
-import com.zhao.www.entity.ServiceResult;
 
 /**
  * @author Matthiola incana

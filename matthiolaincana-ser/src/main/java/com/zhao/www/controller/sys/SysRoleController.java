@@ -1,6 +1,7 @@
 package com.zhao.www.controller.sys;
 
-import com.zhao.www.entity.ServiceResult;
+import com.zhao.www.base.controller.impl.ControllerImpl;
+import com.zhao.www.base.entity.result.ServiceResult;
 import com.zhao.www.entity.model.sys.SysRole;
 import com.zhao.www.entity.param.sys.SysRoleParam;
 import com.zhao.www.service.sys.SysRoleService;
@@ -23,44 +24,42 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysRole")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class SysRoleController {
-
-    private final SysRoleService sysRoleService;
+public class SysRoleController extends ControllerImpl<SysRoleService, SysRole> {
 
     @ApiOperation(value = "获取权限表头部信息", notes = "获取权限表头部信息")
     @PostMapping("/inquireSysRoleHeadList")
     public ServiceResult<?> inquireSysRoleHeadList(@RequestBody SysRoleParam param){
-        return sysRoleService.inquireSysRoleHeadList(param);
+        return service.inquireSysRoleHeadList(param);
     }
 
     @ApiOperation(value = "获取权限表信息", notes = "获取权限表信息")
     @PostMapping("/inquireSysRoleList")
     public ServiceResult<?> inquireSysRoleList(@RequestBody SysRoleParam param){
-        return sysRoleService.inquireSysRoleList(param);
+        return service.inquireSysRoleList(param);
     }
 
     @ApiOperation(value = "获取角色下菜单", notes = "获取角色下菜单")
     @PostMapping("/inquireSysRoleByMenu")
     public ServiceResult<?> inquireSysRoleByMenu(@RequestBody SysRoleParam param){
-        return sysRoleService.inquireSysRoleByMenu(param);
+        return service.inquireSysRoleByMenu(param);
     }
 
     @ApiOperation(value = "添加角色", notes = "添加角色")
     @PostMapping("/increaseSysRole")
     public ServiceResult<?> increaseSysRole(@RequestBody SysRoleParam param){
-        return sysRoleService.increaseSysRole(param);
+        return service.increaseSysRole(param);
     }
 
     @ApiOperation(value = "删除角色", notes = "删除角色")
     @PostMapping("/deleteSysRole")
     public ServiceResult<?> deleteSysRole(@RequestBody SysRoleParam param){
-        return sysRoleService.deleteSysRole(param);
+        return service.deleteSysRole(param);
     }
 
     @ApiOperation(value = "修改角色", notes = "修改角色")
     @PostMapping("/updataSysRole")
     public ServiceResult<?> updataSysRole(@RequestBody SysRoleParam param){
-        return sysRoleService.updataSysRole(param);
+        return service.updataSysRole(param);
     }
 
 }

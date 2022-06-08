@@ -2,11 +2,12 @@ package com.zhao.www.entity.model.sys;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.zhao.www.annotation.component.AntTabel;
+import com.zhao.www.base.entity.model.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "sys_user")
-public class SysUser implements Serializable {
-
-    @TableId(value = "id",type = IdType.ASSIGN_UUID)
-    private String id;
+@EqualsAndHashCode(callSuper = true)
+public class SysUser extends BaseModel {
 
     @AntTabel(title = "用户昵称")
     @TableField("name")
@@ -51,15 +50,9 @@ public class SysUser implements Serializable {
     @TableField("last_login_time")
     private String lastLoginTime;
 
-    @TableField("deleted")
-    private String deleted;
-
     @AntTabel(title = "创建时间")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
-
-    @TableField(value = "creator_id", fill = FieldFill.INSERT)
-    private String createId;
 
     @TableField(exist = false)
     private List<SysRole> role;

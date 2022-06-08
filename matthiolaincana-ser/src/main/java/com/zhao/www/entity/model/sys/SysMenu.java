@@ -2,13 +2,12 @@ package com.zhao.www.entity.model.sys;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.zhao.www.annotation.component.AntTabel;
+import com.zhao.www.base.entity.model.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "sys_menu")
-public class SysMenu implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class SysMenu extends BaseModel {
 
     @TableId(value = "id",type = IdType.ASSIGN_UUID)
     private String id;
@@ -59,19 +59,6 @@ public class SysMenu implements Serializable {
 
     @TableField("hidden_header_content")
     private String hiddenHeaderContent;
-
-    @TableField(value = "creator_id", fill = FieldFill.INSERT)
-    private String creatorId;
-
-    @AntTabel(title = "创建时间")
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private Date createTime;
-
-    @TableField(value = "update_id", fill = FieldFill.INSERT_UPDATE)
-    private String updateId;
-
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
 
     @TableField("permission")
     private String permission;

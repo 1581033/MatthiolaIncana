@@ -1,5 +1,9 @@
-package com.zhao.www.entity;
+package com.zhao.www.base.entity.result;
 
+import com.zhao.www.base.entity.code.ServiceCode;
+import com.zhao.www.base.entity.code.ServiceErrorEnum;
+import com.zhao.www.base.entity.code.ServiceExceptionEnum;
+import com.zhao.www.base.entity.code.ServiceSuccessEnum;
 import com.zhao.www.utils.json.JsonUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -91,6 +95,10 @@ public class ServiceResult<T> implements Serializable {
         return new ServiceResult<T>(ServiceCode.ERROR.getSuccess(),ServiceCode.ERROR.getCode(),message,result);
     }
 
+    public static <T> ServiceResult<T> error(ServiceCode serviceCode) {
+        return new ServiceResult<T>(serviceCode,null);
+    }
+
     public static <T> ServiceResult<T> error(ServiceCode serviceCode,T result) {
         return new ServiceResult<T>(serviceCode,result);
     }
@@ -100,14 +108,19 @@ public class ServiceResult<T> implements Serializable {
     }
 
     public static <T> void requestSuccess(HttpServletResponse response, ServiceCode serviceCode,T result){
-        response.setContentType("application/json;charset=utf-8");
+        requestSuccess(response,serviceCode,result,"application/json");
+    }
+
+    public static <T> void requestSuccess(HttpServletResponse response, ServiceCode serviceCode,T result,String contentType){
+        response.setContentType(contentType);
+        response.setCharacterEncoding("utf-8");
         try (
                 PrintWriter writer = response.getWriter();
-                ){
+        ){
             writer.write(JsonUtil.toJSONStringWithDateFormat(ServiceResult.success(result,serviceCode)));
             writer.flush();
         }catch (IOException e){
-            e.printStackTrace();
+            requestError(response,ServiceCode.ERROR,500);
         }
     }
 
@@ -117,12 +130,11 @@ public class ServiceResult<T> implements Serializable {
         try (
                 PrintWriter writer = response.getWriter();
                 ){
-            writer.write(JsonUtil.toJSONStringWithDateFormat(ServiceResult.error(serviceCode,null)));
+            writer.write(JsonUtil.toJSONStringWithDateFormat(ServiceResult.error(serviceCode)));
             writer.flush();
         }catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
     @Override

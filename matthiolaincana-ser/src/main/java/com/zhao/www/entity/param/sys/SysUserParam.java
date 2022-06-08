@@ -1,8 +1,9 @@
 package com.zhao.www.entity.param.sys;
 
+import com.zhao.www.base.entity.param.BaseParam;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,8 @@ import java.util.List;
  * @create 2021/11/16 14:45
  */
 @Data
-public class SysUserParam implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class SysUserParam extends BaseParam {
 
     private String id;
 

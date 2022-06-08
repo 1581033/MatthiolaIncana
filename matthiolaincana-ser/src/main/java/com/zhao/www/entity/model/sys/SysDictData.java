@@ -2,12 +2,11 @@ package com.zhao.www.entity.model.sys;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.zhao.www.annotation.component.AntTabel;
+import com.zhao.www.base.entity.model.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author Matthiola incana
@@ -17,7 +16,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "sys_dict_data")
-public class SysDictData implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class SysDictData extends BaseModel {
 
     @AntTabel(title = "字典编码")
     @TableId(value = "id",type = IdType.ASSIGN_UUID)
@@ -51,18 +51,5 @@ public class SysDictData implements Serializable {
 
     @TableField(value = "list_class")
     private String listClass;
-
-    @AntTabel(title = "创建时间")
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private Date createTime;
-
-    @TableField(value = "creator_id", fill = FieldFill.INSERT)
-    private String creatorId;
-
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
-
-    @TableField(value = "update_id", fill = FieldFill.INSERT_UPDATE)
-    private String updateId;
 
 }

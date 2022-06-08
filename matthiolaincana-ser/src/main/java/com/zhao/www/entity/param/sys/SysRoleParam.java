@@ -1,6 +1,6 @@
 package com.zhao.www.entity.param.sys;
 
-import com.zhao.www.entity.param.BaseParam;
+import com.zhao.www.base.entity.param.BaseParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

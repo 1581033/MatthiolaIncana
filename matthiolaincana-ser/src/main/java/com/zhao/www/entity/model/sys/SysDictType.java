@@ -1,13 +1,13 @@
 package com.zhao.www.entity.model.sys;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.*;
 import com.zhao.www.annotation.component.AntTabel;
+import com.zhao.www.base.entity.model.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author Matthiola incana
@@ -17,16 +17,20 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "sys_dict_type")
-public class SysDictType implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class SysDictType extends BaseModel {
 
+    @ExcelProperty("字典编号")
     @AntTabel(title = "字典编号")
     @TableId(value = "id",type = IdType.ASSIGN_UUID)
     private String id;
 
+    @ExcelProperty("字典名称")
     @AntTabel(title = "字典名称")
     @TableField("name")
     private String name;
 
+    @ExcelProperty("字典名称")
     @AntTabel(title = "字典类型")
     @TableField("code")
     private String code;
@@ -34,25 +38,14 @@ public class SysDictType implements Serializable {
     @TableField("sort")
     private String sort;
 
+    @ExcelProperty("字典名称")
     @AntTabel(title = "备注")
     @TableField("remark")
     private String remark;
 
+    @ExcelProperty("字典名称")
     @AntTabel(title = "状态")
     @TableField("status")
     private String status;
-
-    @AntTabel(title = "创建时间")
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private Date createTime;
-
-    @TableField(value = "creator_id", fill = FieldFill.INSERT)
-    private String creatorId;
-
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
-
-    @TableField(value = "update_id", fill = FieldFill.INSERT_UPDATE)
-    private String updateId;
 
 }

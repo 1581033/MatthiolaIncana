@@ -1,21 +1,21 @@
-package com.zhao.www.config;
+package com.zhao.www.handler;
 
-import com.zhao.www.entity.ServiceCode;
-import com.zhao.www.entity.ServiceResult;
-import io.lettuce.core.RedisConnectionException;
+import com.zhao.www.base.entity.code.ServiceCode;
+import com.zhao.www.base.entity.code.ServiceExceptionEnum;
+import com.zhao.www.base.entity.result.ServiceResult;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @author Matthiola incana
  * @create 2021/10/14 15:16
  */
 @Log4j2
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     /**
@@ -42,8 +42,17 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(RedisConnectionFailureException.class)
     @ResponseBody
-    public ServiceResult<?> RedisConnectionFailureException(Exception e) {
+    public ServiceResult<?> redisConnectionFailureException(Exception e) {
         return ServiceResult.exception(ServiceCode.REDISCONNECTIONFAILURE,e.getMessage());
+    }
+
+    /**
+     * 拦截RedisConnectionFailureException类的异常
+     */
+    @ExceptionHandler(NullPointerException.class)
+    @ResponseBody
+    public ServiceResult<?> nullPointerException(Exception e) {
+        return ServiceResult.exception(ServiceCode.NUllPOINTEREXCEPTION,e.getMessage());
     }
 
 

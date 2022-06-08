@@ -1,4 +1,4 @@
-package com.zhao.www.entity.param;
+package com.zhao.www.base.entity.param;
 
 import lombok.Data;
 

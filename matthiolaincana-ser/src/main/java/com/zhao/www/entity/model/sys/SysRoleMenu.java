@@ -4,11 +4,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.zhao.www.base.entity.model.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 /**
  * @author Matthiola incana
@@ -18,7 +18,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "sys_role_menu")
-public class SysRoleMenu implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class SysRoleMenu extends BaseModel {
 
     @TableId(value = "id",type = IdType.ASSIGN_UUID)
     private String id;

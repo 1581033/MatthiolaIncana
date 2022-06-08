@@ -1,8 +1,6 @@
 package com.zhao.www.controller.login;
 
-import com.zhao.www.annotation.UserAuthenticate;
-import com.zhao.www.entity.ServiceResult;
-import com.zhao.www.service.TestService;
+import com.zhao.www.base.entity.result.ServiceResult;
 import com.zhao.www.service.login.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,9 +27,8 @@ public class LoginController {
 
     @ApiOperation(value = "登录", notes = "登录")
     @PostMapping("/userLogin")
-    public ServiceResult<?> userLogin(@ApiParam("返回内容") @RequestParam("username")String username,@RequestParam("password")String password){
+    public void userLogin(@ApiParam("返回内容") @RequestParam("username")String username,@RequestParam("password")String password){
         log.info("测试接口一 -------- > 账号："  + username + "密码：" + password);
-        return ServiceResult.success(null);
     }
 
     @ApiOperation(value = "登出", notes = "登出")

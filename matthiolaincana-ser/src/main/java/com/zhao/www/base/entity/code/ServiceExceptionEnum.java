@@ -1,23 +1,15 @@
-package com.zhao.www.entity;
+package com.zhao.www.base.entity.code;
 
 /**
  * @author Matthiola incana
- * @create 2021/10/13 9:12
+ * @create 2022/6/8 10:40
  */
-public enum ServiceCode {
+public enum ServiceExceptionEnum {
 
-    /**
-     * 后端数据返回错误
-     */
-    ERROR(false,100,"error"),
-    /**
-     * 后端数据返回成功
-     */
-    SUCCESS(true,200,"success"),
     /**
      * 后端异常全局返回
      */
-    EXCEPTION(false,1000,"exception"),
+    EXCEPTION(false,1000,"出现其他异常！"),
     /**
      * 后端数据返回错误
      */
@@ -33,21 +25,23 @@ public enum ServiceCode {
     /**
      * RRDIS错误返回异常
      */
-    REDISCONNECTIONFAILURE(false, 100,"Redis连接异常！");
+    REDISCONNECTIONFAILURE(false, 100,"Redis连接异常！"),
+    /**
+     * 空指针错误返回异常
+     */
+    NUllPOINTEREXCEPTION(false, 100, "数据空指针异常！" );
 
-
-
-    private Boolean success;
-
-    private Integer code;
-
-    private String message;
-
-    ServiceCode(Boolean success, Integer code, String message){
+    ServiceExceptionEnum(Boolean success, Integer code, String message){
         this.success = success;
         this.code = code;
         this.message = message;
     }
+
+    private final Boolean success;
+
+    private final Integer code;
+
+    private final String message;
 
     public Boolean getSuccess() {
         return success;
@@ -60,4 +54,5 @@ public enum ServiceCode {
     public String getMessage() {
         return message;
     }
+
 }

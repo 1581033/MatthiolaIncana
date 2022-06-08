@@ -1,8 +1,9 @@
 package com.zhao.www.config;
 
 import cn.hutool.core.lang.UUID;
-import com.zhao.www.entity.ServiceCode;
-import com.zhao.www.entity.ServiceResult;
+import com.zhao.www.base.entity.code.ServiceCode;
+import com.zhao.www.base.entity.code.ServiceExceptionEnum;
+import com.zhao.www.base.entity.result.ServiceResult;
 import com.zhao.www.service.login.LoginService;
 import com.zhao.www.utils.json.JsonUtil;
 import com.zhao.www.utils.jwt.JwtTokenUtil;
@@ -16,11 +17,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.*;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -70,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                     httpServletResponse.setContentType(CONTENTTYPE);
                     PrintWriter writer = httpServletResponse.getWriter();
                     ServiceResult<ServiceCode> result;
-                    if (e instanceof UsernameNotFoundException){
+                    /*if (e instanceof UsernameNotFoundException){
                         result = ServiceResult.error("用户名错误");
                     }else if (e instanceof BadCredentialsException){
                         result = ServiceResult.error("密码错误");
@@ -84,8 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         result = ServiceResult.error("证书过期");
                     }else {
                         result = ServiceResult.error("登陆失败");
-                    }
-                    writer.write(JsonUtil.toJSONStringWithDateFormat(result));
+                    }*/
+                    writer.write(JsonUtil.toJSONStringWithDateFormat(ServiceResult.error(ServiceCode.ERROR)));
                     writer.flush();
                     writer.close();
                 })
@@ -112,7 +111,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 //自定义登出
                 .logoutSuccessHandler((httpServletRequest, httpServletResponse, authentication) -> {
                     httpServletResponse.setContentType(CONTENTTYPE);
-                    String token = httpServletRequest.getHeader("Access-Token");
+                    String token = httpServletRequest.getHeader(JwtTokenUtil.TOKENNAME);
                     PrintWriter writer = httpServletResponse.getWriter();
                     ServiceResult<ServiceCode> result;
                     if (Boolean.TRUE.equals(redisTemplate.delete(token))) {

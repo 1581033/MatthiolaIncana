@@ -20,6 +20,8 @@ public class JwtTokenUtil {
     */
     private static final String TOKEN_SECRET = "pwdddd";
 
+    public static final String TOKENNAME = "Access-Token";
+
     public JwtTokenUtil() { }
 
     public static String creatToken(String username, String tokenSecret){

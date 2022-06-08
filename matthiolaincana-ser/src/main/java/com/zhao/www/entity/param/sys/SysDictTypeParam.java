@@ -1,11 +1,9 @@
 package com.zhao.www.entity.param.sys;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.zhao.www.annotation.component.AntTabel;
-import com.zhao.www.entity.param.BaseParam;
+import com.zhao.www.base.entity.param.BaseParam;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,6 +11,7 @@ import java.util.List;
  * @create 2022/1/22 14:58
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class SysDictTypeParam extends BaseParam {
 
     private String id;

@@ -1,14 +1,16 @@
 package com.zhao.www.entity.param.sys;
 
-import com.zhao.www.entity.param.BaseParam;
+import com.zhao.www.base.entity.param.BaseParam;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Matthiola incana
  * @create 2022/2/7 10:49
  */
 @Data
-public class SysDictDataParam  extends BaseParam {
+@EqualsAndHashCode(callSuper = true)
+public class SysDictDataParam extends BaseParam {
 
     private String id;
 
