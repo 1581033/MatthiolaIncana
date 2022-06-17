@@ -23,6 +23,34 @@ public enum ServiceCode {
      */
     NOTLOGGEDIN(false,100,"未登录，请重新登录！"),
     /**
+     * 后端数据登录成功
+     */
+    LOGINSUCCESS(true,200,"登陆成功！"),
+    /**
+     * 后端数据退出登录成功
+     */
+    LOGINOUTSUCCESS(true,200,"退出成功！"),
+    /**
+     * 后端数据登录验证错误
+     */
+    LOGINDISABLED(true,200,"该用户已被禁用！"),
+    /**
+     * 后端数据登录验证错误
+     */
+    LOGINLOCKED(true,200,"该用户已被锁定！"),
+    /**
+     * 后端数据登录验证错误
+     */
+    LOGINACCOUNT(true,200,"该用户已过期！"),
+    /**
+     * 后端数据登录验证错误
+     */
+    LOGINCREDENTIALS(true,200,"该用户证书过期！"),
+    /**
+     * 后端数据登录验证错误
+     */
+    LOGINFAILURE(false,100,"账号或密码错误！"),
+    /**
      * 后端数据返回错误
      */
     INSUFFICIENTPERMISSIONS(false,100,"权限不足！"),
@@ -37,7 +65,15 @@ public enum ServiceCode {
     /**
      * 空指针错误返回异常
      */
-    NUllPOINTEREXCEPTION(false, 100, "数据空指针异常！" );
+    NUllPOINTEREXCEPTION(false, 100, "数据空指针异常！" ),
+    /**
+     * 请求参数空错误返回异常
+     */
+    HTTPMESSAGENOTREADABLEEXCEPTION(false, 100, "请求参数空异常！"),
+    /**
+     * 校验数据异常错误返回异常
+     */
+    METHODARGUMENTNOTVALIDEXCEPTION(false, 100, "校验参数异常！");
 
 
     private Boolean success;

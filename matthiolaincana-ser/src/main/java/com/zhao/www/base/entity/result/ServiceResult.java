@@ -1,9 +1,6 @@
 package com.zhao.www.base.entity.result;
 
 import com.zhao.www.base.entity.code.ServiceCode;
-import com.zhao.www.base.entity.code.ServiceErrorEnum;
-import com.zhao.www.base.entity.code.ServiceExceptionEnum;
-import com.zhao.www.base.entity.code.ServiceSuccessEnum;
 import com.zhao.www.utils.json.JsonUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -76,7 +73,7 @@ public class ServiceResult<T> implements Serializable {
     }
 
     public static <T> ServiceResult<T> success(T result, Integer code, String message) {
-        return new ServiceResult<T>(ServiceCode.SUCCESS.getSuccess(),code,message,result);
+        return new ServiceResult<T>(true,code,message,result);
     }
 
     public static <T> ServiceResult<T> success(T result, ServiceCode serviceCode) {
@@ -107,30 +104,35 @@ public class ServiceResult<T> implements Serializable {
         return new ServiceResult<T>(serviceCode,result);
     }
 
-    public static <T> void requestSuccess(HttpServletResponse response, ServiceCode serviceCode,T result){
-        requestSuccess(response,serviceCode,result,"application/json");
+    public static <T> void requestSuccess(HttpServletResponse response, ServiceCode serviceCode){
+        requestSuccess(response,serviceCode,"application/json");
     }
 
-    public static <T> void requestSuccess(HttpServletResponse response, ServiceCode serviceCode,T result,String contentType){
+    public static <T> void requestSuccess(HttpServletResponse response, ServiceCode serviceCode,String contentType){
         response.setContentType(contentType);
         response.setCharacterEncoding("utf-8");
         try (
                 PrintWriter writer = response.getWriter();
         ){
-            writer.write(JsonUtil.toJSONStringWithDateFormat(ServiceResult.success(result,serviceCode)));
+            writer.write(JsonUtil.toJSONStringWithDateFormat(ServiceResult.success(null,serviceCode)));
             writer.flush();
         }catch (IOException e){
-            requestError(response,ServiceCode.ERROR,500);
+            requestError(response,ServiceCode.ERROR,HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public static void requestError(HttpServletResponse response, ServiceCode serviceCode){
+        requestError(response,serviceCode,HttpServletResponse.SC_OK);
     }
 
     public static void requestError(HttpServletResponse response, ServiceCode serviceCode,int status){
         response.setContentType("application/json;charset=utf-8");
         response.setStatus(status);
         try (
-                PrintWriter writer = response.getWriter();
-                ){
+                PrintWriter writer = response.getWriter()
+        ){
             writer.write(JsonUtil.toJSONStringWithDateFormat(ServiceResult.error(serviceCode)));
+            writer.close();
             writer.flush();
         }catch (IOException e){
             e.printStackTrace();

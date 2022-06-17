@@ -5,31 +5,23 @@ import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.zhao.www.utils.jwt.JwtTokenUtil;
+import com.zhao.www.entity.model.SysUser;
+import com.zhao.www.handler.SecurityDetailsHolder;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletResponse;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Optional;
 
 /**
  * @author Matthiola incana
  * @create 2022/1/5 11:32
  */
 @Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MyBatisPlusConfig implements MetaObjectHandler {
-
-    @Autowired
-    private HttpServletResponse httpServletResponse;
-
-    @Autowired
-    private RedisTemplate<String,Object> redisTemplate;
 
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
@@ -48,23 +40,20 @@ public class MyBatisPlusConfig implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         Date date = new Date();
-        String token = httpServletResponse.getHeader(JwtTokenUtil.TOKENNAME);
-        Optional<Object> optional = Optional.ofNullable(redisTemplate.opsForValue().get(token));
+        SysUser details = (SysUser) SecurityDetailsHolder.details();
         this.setFieldValByName("createTime",date,metaObject);
-        this.setFieldValByName("creatorId",optional,metaObject);
+        this.setFieldValByName("creatorId",details.getId(),metaObject);
         this.setFieldValByName("createUnit","1",metaObject);
         this.setFieldValByName("updateTime",date,metaObject);
-        this.setFieldValByName("updateId",optional,metaObject);
+        this.setFieldValByName("updateId",details.getId(),metaObject);
         this.setFieldValByName("updateUnit","1",metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        Date date = new Date();
-        String token = httpServletResponse.getHeader(JwtTokenUtil.TOKENNAME);
-        Optional<Object> optional = Optional.ofNullable(redisTemplate.opsForValue().get(token));
-        this.setFieldValByName("updateTime",date,metaObject);
-        this.setFieldValByName("updateId",optional,metaObject);
+        SysUser details = (SysUser) SecurityDetailsHolder.details();
+        this.setFieldValByName("updateTime",new Date(),metaObject);
+        this.setFieldValByName("updateId",details.getId(),metaObject);
         this.setFieldValByName("updateUnit","1",metaObject);
     }
 }
