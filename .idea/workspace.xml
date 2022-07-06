@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="344584a3-2524-40ea-9635-8fd4ded78603" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/matthiolaincana-web/public/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/annotation/UserAuthenticate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/antui/AntTabel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/antui/AntTabelColumn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/aop/OperationLogAspect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/aop/UserTokenAspect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/base/controller/IController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/base/controller/impl/ControllerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/base/entity/code/ServiceCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/base/entity/model/BaseModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/base/entity/param/BaseParam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/base/entity/result/ServiceResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/config/JwtAuthenticationTokenFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/config/MyBatisPlusConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/config/RedisConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/config/SwaggerConfigurer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/controller/OperationLogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/controller/SysDictDataController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/controller/SysDictTypeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/controller/SysMenuController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/controller/SysPageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/controller/SysRoleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/controller/SysUserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/dto/sys/MenuDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/dto/sys/MetaDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/dto/sys/PermissionDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/dto/sys/RoleDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/dto/sys/UserInfoDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/model/OperationLog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/model/SysDictData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/model/SysDictType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/model/SysMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/model/SysPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/model/SysPermission.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/model/SysRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/model/SysRoleMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/model/SysUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/param/SysDictDataParam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/param/SysDictTypeParam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/param/SysMenuParam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/param/SysPageParam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/param/SysRoleParam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/entity/param/SysUserParam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/handler/AutDeniedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/handler/AutEntryPointHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/handler/AutFailureHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/handler/AutSuccessHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/handler/AutoutSuccessHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/handler/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/handler/ResponseAdviceHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/handler/SecurityDetailsHolder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/mapper/OperationLogMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/mapper/SysDictDataMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/mapper/SysDictTypeMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/mapper/SysMenuMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/mapper/SysPageMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/mapper/SysPermissionMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/mapper/SysRoleMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/mapper/SysRoleMenuMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/mapper/SysUserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/service/OperationLogService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/service/SysDictDataService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/service/SysDictTypeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/service/SysMenuService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/service/SysPageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/service/SysRoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/service/SysUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/utils/date/DateUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/utils/json/JsonUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/utils/jwt/JwtTokenUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/java/com/zhao/www/utils/request/IpUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/resources/banner.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/resources/log4j2.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/resources/mapper/sys/SysMenuMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/resources/mapper/sys/SysRoleMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/main/resources/mapper/sys/SysUserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-ser/src/test/java/ApplicationTest1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/apis/SystemManagement/menumanagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/apis/SystemManagement/menumanagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/apis/SystemManagement/rolemanagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/apis/SystemManagement/rolemanagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/apis/SystemManagement/usermanagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/apis/SystemManagement/usermanagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/apis/baseresponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/apis/baseresponse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/apis/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/apis/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/assets/scss/iconfont.css" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/assets/scss/iconfont.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/components/Error/404.vue" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/components/Error/404.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/components/GlobalHeader/AvatarDropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/components/GlobalHeader/AvatarDropdown.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/components/GlobalHeader/RightContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/components/GlobalHeader/RightContent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/config/defaultSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/config/defaultSettings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/icons/svg/menu-fold.svg" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/icons/svg/menu-fold.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/icons/svg/menu-unfold.svg" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/icons/svg/menu-unfold.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/icons/svg/password.svg" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/icons/svg/password.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/icons/svg/size.svg" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/icons/svg/size.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/layouts/BasicLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/layouts/BasicLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/layouts/UserLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/layouts/UserLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/layouts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/layouts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/permission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/store/modules/async-router.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/store/modules/async-router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/store/modules/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/store/mutation-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/store/mutation-types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/utils/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/src/views/SystemManagement/RoleManagement/modules/AddSysRole.vue" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/src/views/SystemManagement/RoleManagement/modules/AddSysRole.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matthiolaincana-web/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/matthiolaincana-web/vite.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Program Files\maven\apache-maven-3.6.3\repository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../Program Files/maven/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="C:\Program Files\maven\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2BYRMRLfkhSiMKP1ptGlpohsHfb" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/CodeToTest/MatthiolaIncana",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2022.1.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="344584a3-2524-40ea-9635-8fd4ded78603" name="Changes" comment="" />
+      <created>1657080984042</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657080984042</updated>
+      <workItem from="1657080985909" duration="990000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/matthiolaincana-web/src/layouts/index.js" />
+        <option value="$PROJECT_DIR$/matthiolaincana-web/vite.config.js" />
+        <option value="$PROJECT_DIR$/matthiolaincana-web/src/router/index.js" />
+        <option value="$PROJECT_DIR$/matthiolaincana-web/src/store/index.js" />
+        <option value="$PROJECT_DIR$/matthiolaincana-web/src/utils/request.js" />
+        <option value="$PROJECT_DIR$/matthiolaincana-web/src/main.js" />
+        <option value="$PROJECT_DIR$/matthiolaincana-web/src/store/modules/user.js" />
+        <option value="$PROJECT_DIR$/matthiolaincana-web/src/permission.js" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="0303ce79-b370-4788-819f-5ea771b7819f">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="0303ce79-b370-4788-819f-5ea771b7819f" value="TOOL_WINDOW" />
+      </map>
+    </option>
+  </component>
+</project>
