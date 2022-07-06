@@ -1,0 +1,29 @@
+Configuration:
+  #配置项名称
+  name: MatthiolaIncana
+  #全局日志级别
+  status: warn
+  #自动检测修改配置间隔秒数
+  monitorInterval: 1800
+  properties:
+    property:
+      - name: DEFAULT_PATTERN
+        value: "%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint}  %clr{%-5level} %clr{${sys:PID}}{magenta} %clr{[%15.15t]}{faint} %X{user} %clr{%logger:%L{36}}{cyan} %clr{:}{faint} %m%n%xwEx"
+  appenders:
+    Console:
+      name: Console
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: ${DEFAULT_PATTERN}
+  Loggers:
+    logger:
+        - name: com.zhao.www
+          level: info
+        - name: com.mysql
+          level: info
+        - name: org
+          level: error
+    Root:
+      level: error
+      AppenderRef:
+        - ref: Console
