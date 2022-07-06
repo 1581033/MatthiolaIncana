@@ -1,0 +1,24 @@
+spring:
+  # 数据源配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3316/matth?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+      username: root
+      password: 132456
+  redis:
+    host: 127.0.0.1
+    port: 123456
+    password: 12345
+    # 连接超时时间（毫秒）
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 500
+        max-wait: 500
+        max-idle: 500
+        min-idle: 0
+
+logging:
+  config: classpath:log4j2/log4j2-prod.yml

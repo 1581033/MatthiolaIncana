@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.matth</groupId>
+    <artifactId>matthiolaincana-ser</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>matth-system</module>
+        <module>matth-main</module>
+        <module>matth-monitor</module>
+        <module>matth-common</module>
+        <module>matth-log</module>
+        <module>matth-framework</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <aspose.version>22.6</aspose.version>
+    </properties>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <!-- Api在线文档 -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>1.6.9</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>2.11.1</version>
+            </dependency>
+
+            <!-- json -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>2.0.7</version>
+            </dependency>
+
+            <!-- jjwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.9.1</version>
+            </dependency>
+
+            <!-- hutool工具库 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>5.8.3</version>
+            </dependency>
+
+            <!-- junit单元测试 -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13.2</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- mysql驱动包 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.29</version>
+            </dependency>
+
+            <!-- 数据源 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.2.11</version>
+            </dependency>
+
+            <!-- 持久层框架 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.5.2</version>
+            </dependency>
+
+            <!-- lombok插件 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.24</version>
+            </dependency>
+
+            <!-- excel -->
+            <dependency>
+                <groupId>com.aspose</groupId>
+                <artifactId>aspose-cells</artifactId>
+                <version>${aspose.version}</version>
+            </dependency>
+
+            <!-- words -->
+            <dependency>
+                <groupId>com.aspose</groupId>
+                <artifactId>aspose-words</artifactId>
+                <version>${aspose.version}</version>
+                <classifier>jdk17</classifier>
+            </dependency>
+
+            <!-- ftp -->
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>3.8.0</version>
+            </dependency>
+
+            <!-- 解析请求信息 -->
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>1.21</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.active>dev</spring.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <spring.active>prod</spring.active>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>
