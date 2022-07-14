@@ -21,7 +21,7 @@ public enum ServiceCode {
     /**
      * 后端数据返回错误
      */
-    NOTLOGGEDIN(false,100,"未登录，请重新登录！"),
+    NOTLOGGEDIN(false,110,"未登录，请重新登录！"),
     /**
      * 后端数据登录成功
      */
@@ -41,11 +41,11 @@ public enum ServiceCode {
     /**
      * 后端数据登录验证错误
      */
-    LOGINACCOUNT(true,200,"该用户已过期！"),
+    LOGINACCOUNT(true,110,"该用户已过期！"),
     /**
      * 后端数据登录验证错误
      */
-    LOGINCREDENTIALS(true,200,"该用户证书过期！"),
+    LOGINCREDENTIALS(true,110,"该用户证书过期！"),
     /**
      * 后端数据登录验证错误
      */
