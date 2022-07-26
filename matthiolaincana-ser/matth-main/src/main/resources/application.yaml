@@ -2,6 +2,12 @@ server:
   port: 9001
   servlet:
     context-path: /api
+  undertow:
+    threads:
+      io: 4
+      worker: 20
+    buffer-size: 1024
+    direct-buffers: true
 
 spring:
   application:
@@ -69,6 +75,7 @@ mybatis-plus:
   type-aliases-package: com.matth.entity
   configuration:
     cache-enabled: true
+    map-underscore-to-camel-case: true
   global-config:
     banner: false
     db-config:
