@@ -13,27 +13,19 @@ import java.util.List;
  */
 public class EntityDataTable<T> implements ICellsDataTable {
 
-    private List<T> list;
+    private final List<T> list;
 
     private Integer index;
 
-    private String[] columns;
+    private final String[] columns;
 
     public EntityDataTable(){
-        this.list = new ArrayList<>();
+        this(new ArrayList<>());
     }
 
     public EntityDataTable(List<T> list){
         this.list = list;
         this.columns = getColumns();
-    }
-
-    public void add(T t){
-        this.list.add(t);
-    }
-
-    public void addAll(List<T> list){
-        this.list.addAll(list);
     }
 
     @Override
