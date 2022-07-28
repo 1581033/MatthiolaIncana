@@ -12,7 +12,7 @@ import java.util.Set;
  * 实现ICellsDataTable接口
  * 以便支持对HashMap的支持
  */
-public class HashMapDataTable implements ICellsDataTable {
+public class MapDataTable implements ICellsDataTable {
 
 	//数据集合
 	private List<Map<String, Object>> dataList = null;
@@ -23,15 +23,15 @@ public class HashMapDataTable implements ICellsDataTable {
 	//存放dataList当中Map<String, Object>的key
 	private String[] columns = null;
 
-	public HashMapDataTable() {
+	public MapDataTable() {
 	}
 
-	public HashMapDataTable(Map<String, Object> data) {
+	public MapDataTable(Map<String, Object> data) {
 		this.dataList = new ArrayList<Map<String,Object>>();
 		dataList.add(data);
 	}
 
-	public HashMapDataTable(List<Map<String, Object>> data) {
+	public MapDataTable(List<Map<String, Object>> data) {
 		this.dataList = data;
 	}
 
