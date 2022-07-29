@@ -15,4 +15,8 @@ public class SecurityDetailsHolder {
         return Optional.ofNullable((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).orElseThrow(NullPointerException::new);
     }
 
+    public static Object[] roles() {
+        return SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray();
+    }
+
 }

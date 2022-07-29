@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -27,19 +28,15 @@ public class UserService extends ServiceImpl<UserMapper, User> implements UserDe
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(User::getUsername,username);
-        User user = Optional.ofNullable(getOne(wrapper)).orElseThrow(() -> new UsernameNotFoundException("用户名错误"));
-        user.setAuthorities("ROLE_ADMINS");
+        User user = Optional.ofNullable(baseMapper.selectByUserName(username)).orElseThrow(() -> new UsernameNotFoundException("用户名错误"));
+        user.setAuthorities(user.getRoles().toArray(new String[0]));
         return user;
     }
 
     public Authentication loadUserByToken(String token, String key) throws UsernameNotFoundException {
         String userName = JwtTokenUtil.getTokenUserName(token, key);
-        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(User::getUsername,userName);
-        User user = Optional.ofNullable(getOne(wrapper)).orElseThrow(() -> new UsernameNotFoundException("用户名错误"));
-        user.setAuthorities("ROLE_ADMINS");
+        User user = Optional.ofNullable(baseMapper.selectByUserName(userName)).orElseThrow(() -> new UsernameNotFoundException("用户名错误"));
+        user.setAuthorities(user.getRoles().toArray(new String[0]));
         return user.getAuthentication();
     }
 

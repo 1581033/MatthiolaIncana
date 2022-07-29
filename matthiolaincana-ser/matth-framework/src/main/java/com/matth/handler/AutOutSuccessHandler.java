@@ -19,13 +19,16 @@ import java.io.IOException;
  * @create 2022/6/13 10:58
  */
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class AutoutSuccessHandler implements LogoutSuccessHandler {
+public class AutOutSuccessHandler implements LogoutSuccessHandler {
+
+    private static final String STARTWI = "CACHESESSIONID=";
 
     private final RedisTemplate<String,Object> redisTemplate;
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String token = response.getHeader(JwtTokenUtil.TOKENNAME);
+        String header = request.getHeader("Authorization");
+        String token = header.replace(STARTWI, "");
         if (Boolean.TRUE.equals(redisTemplate.delete(token))) {
             ServiceResult.requestSuccess(response, ServiceCode.LOGINOUTSUCCESS);
         }else {

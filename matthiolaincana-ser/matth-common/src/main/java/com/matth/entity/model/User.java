@@ -33,10 +33,10 @@ public class User extends BaseModel implements UserDetails {
     private String name;
 
     @AntTabel(title = "用户名称")
-    @TableField("user_name")
+    @TableField("username")
     private String username;
 
-    @TableField("pass_word")
+    @TableField("password")
     private String password;
 
     @TableField("avatar")
@@ -57,7 +57,7 @@ public class User extends BaseModel implements UserDetails {
     private String lastLoginTime;
 
     @TableField(exist = false)
-    private List<String> role;
+    private List<String> roles;
 
     @TableField(exist = false)
     private Collection<? extends GrantedAuthority> authorities;

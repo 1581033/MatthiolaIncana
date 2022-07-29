@@ -1,5 +1,6 @@
 package com.matth.handler;
 
+import cn.hutool.core.util.IdUtil;
 import com.matth.entity.code.ServiceCode;
 import com.matth.entity.result.ServiceResult;
 import com.matth.utils.jwt.JwtTokenUtil;
@@ -27,10 +28,10 @@ public class AutSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String tokenSecret = UUID.randomUUID().toString();
+        String tokenSecret = IdUtil.fastSimpleUUID().toUpperCase();
         String token = JwtTokenUtil.creatToken(authentication.getName(), tokenSecret);
-        redisTemplate.opsForValue().set(token,tokenSecret,2, TimeUnit.HOURS);
-        response.setHeader(JwtTokenUtil.TOKENNAME,token);
+        redisTemplate.opsForValue().set(tokenSecret,token,2, TimeUnit.HOURS);
+        response.setHeader(JwtTokenUtil.TOKENNAME,tokenSecret);
         response.setHeader("Access-Control-Expose-Headers",JwtTokenUtil.TOKENNAME);
         ServiceResult.requestSuccess(response, ServiceCode.LOGINSUCCESS);
     }

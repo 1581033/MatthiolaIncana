@@ -45,7 +45,7 @@ public class SecurityConfig {
                 .and().exceptionHandling()
                 .accessDeniedHandler(new AutDeniedHandler())
                 .authenticationEntryPoint(new AutEntryPointHandler())
-                .and().logout().logoutSuccessHandler(new AutoutSuccessHandler(redisTemplate))
+                .and().logout().logoutSuccessHandler(new AutOutSuccessHandler(redisTemplate))
                 .and().authorizeRequests().antMatchers(MATCHERS).permitAll().anyRequest().authenticated()
                 .and().addFilterAfter(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

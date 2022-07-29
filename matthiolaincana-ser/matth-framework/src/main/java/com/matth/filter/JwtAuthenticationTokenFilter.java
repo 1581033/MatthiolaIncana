@@ -27,16 +27,20 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
+
+    private static final String STARTWI = "CACHESESSIONID=";
+
     private final UserService userService;
 
     private final StringRedisTemplate redisTemplate;
 
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
        try{
-           String token = request.getHeader(JwtTokenUtil.TOKENNAME);
-           if (StringUtils.hasLength(token)){
-               Object key = Optional.ofNullable(redisTemplate.opsForValue().get(token)).orElseThrow(() -> new CredentialsExpiredException(null));
-               SecurityContextHolder.getContext().setAuthentication(userService.loadUserByToken(token, key.toString()));
+           String header = request.getHeader("Authorization");
+           if (StringUtils.hasLength(header) && header.startsWith(STARTWI)){
+               String key = header.replace(STARTWI, "");
+               String token = Optional.ofNullable(redisTemplate.opsForValue().get(key)).orElseThrow(() -> new CredentialsExpiredException(null));
+               SecurityContextHolder.getContext().setAuthentication(userService.loadUserByToken(token,key));
            }
            filterChain.doFilter(request, response);
        }catch (AccountStatusException e){
