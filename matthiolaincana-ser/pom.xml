@@ -23,6 +23,7 @@
         <module>matth-common</module>
         <module>matth-log</module>
         <module>matth-framework</module>
+        <module>matth-pagination</module>
     </modules>
 
     <properties>
