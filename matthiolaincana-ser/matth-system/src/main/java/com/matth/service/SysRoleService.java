@@ -1,9 +1,11 @@
 package com.matth.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.matth.entity.model.SysRole;
 import com.matth.entity.model.SysRoleMenu;
+import com.matth.entity.model.SysUser;
 import com.matth.entity.param.SysRoleParam;
 import com.matth.entity.result.ServiceResult;
 import com.matth.mapper.SysMenuMapper;
@@ -35,13 +37,14 @@ public class SysRoleService extends ServiceImpl<SysRoleMapper, SysRole> {
         if (StringUtils.hasLength(param.getName())){
             queryWrapper.like(SysRole::getName,param.getName());
         }
-        if (StringUtils.hasLength(param.getStatus())){
+        /*if (StringUtils.hasLength(param.getStatus())){
             queryWrapper.eq(SysRole::getStatus,param.getStatus());
-        }
+        }*/
         if (!CollectionUtils.isEmpty(param.getDateTime()) && param.getDateTime().size() > 1){
             queryWrapper.between(SysRole::getCreateTime,param.getDateTime().get(0),param.getDateTime().get(1));
         }
-        return ServiceResult.success(list(queryWrapper));
+        Page<SysRole> page = new Page<>(1, 10);
+        return ServiceResult.success(page(page, queryWrapper));
     }
 
     public ServiceResult<?> increaseSysRole(SysRoleParam param) {

@@ -15,7 +15,7 @@ public class SysRoleParam extends BaseParam {
 
     private String id;
     private String name;
-    private String status;
+    private Integer status;
     private String roleDescribe;
     private String[] menus;
 

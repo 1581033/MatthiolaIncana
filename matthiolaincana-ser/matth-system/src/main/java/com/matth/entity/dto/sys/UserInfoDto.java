@@ -17,11 +17,17 @@ import java.util.List;
 public class UserInfoDto implements Serializable {
 
     private String id;
+
     private String name;
+
     private String username;
+
     private String avatar;
+
     private String status;
+
     private String telephone;
-    private List<RoleDto> role;
+
+    private List<String> roles;
 
 }

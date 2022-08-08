@@ -27,10 +27,10 @@ public class SysUser extends BaseModel {
     private String name;
 
     @AntTabel(title = "用户名称")
-    @TableField("user_name")
+    @TableField("username")
     private String username;
 
-    @TableField("pass_word")
+    @TableField("password")
     private String password;
 
     @TableField("avatar")
@@ -38,7 +38,7 @@ public class SysUser extends BaseModel {
 
     @AntTabel(title = "状态")
     @TableField("status")
-    private String status;
+    private Integer status;
 
     @AntTabel(title = "手机号码")
     @TableField("telephone")

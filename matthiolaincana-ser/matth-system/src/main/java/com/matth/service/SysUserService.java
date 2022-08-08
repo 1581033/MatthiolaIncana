@@ -13,6 +13,7 @@ import com.matth.handler.SecurityDetailsHolder;
 import com.matth.mapper.SysUserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -30,13 +31,15 @@ import java.util.Optional;
 public class SysUserService extends ServiceImpl<SysUserMapper, SysUser>{
 
     public UserInfoDto userInfo() {
-        User details = SecurityDetailsHolder.details();
-        return baseMapper.selectByUserNameForRole(details.getUsername());
+        User user = SecurityDetailsHolder.details();
+        UserInfoDto userInfoDto = new UserInfoDto();
+        BeanUtils.copyProperties(user,userInfoDto);
+        return userInfoDto;
     }
 
     public ServiceResult<?> queryUserInformation(SysUserParam param) {
         QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
-        Page<SysUser> page = new Page<>(1, 10);
+        Page<SysUser> page = new Page<>(param.getPage(), param.getSize());
         Page<SysUser> userPage = page(page, wrapper);
         return ServiceResult.success(userPage);
     }
@@ -55,9 +58,9 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser>{
         if (StringUtils.hasLength(param.getTelephone())){
             queryWrapper.like(SysUser::getTelephone,param.getTelephone());
         }
-        if (StringUtils.hasLength(param.getStatus())){
+        /*if (StringUtils.hasLength(param.getStatus())){
             queryWrapper.eq(SysUser::getStatus,param.getStatus());
-        }
+        }*/
         if (!CollectionUtils.isEmpty(param.getDateTime()) && param.getDateTime().size() > 1){
             queryWrapper.between(SysUser::getName,param.getDateTime().get(0),param.getDateTime().get(1));
         }

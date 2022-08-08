@@ -29,13 +29,16 @@ public class SysRole extends BaseModel {
     @TableField("name")
     private String name;
 
+    @TableField("code")
+    private String code;
+
     @AntTabel(title = "描述")
     @TableField("role_describe")
     private String roleDescribe;
 
     @AntTabel(title = "状态")
     @TableField("status")
-    private String status;
+    private Integer status;
 
     @TableField(value = "creator_id", fill = FieldFill.INSERT)
     private String creatorId;

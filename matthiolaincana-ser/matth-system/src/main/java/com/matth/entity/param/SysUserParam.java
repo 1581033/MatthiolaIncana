@@ -21,7 +21,7 @@ public class SysUserParam extends BaseParam {
 
     private String avatar;
 
-    private String status;
+    private Integer status;
 
     private String telephone;
 

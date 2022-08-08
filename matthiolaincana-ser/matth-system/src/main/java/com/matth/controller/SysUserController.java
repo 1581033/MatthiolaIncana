@@ -3,6 +3,7 @@ package com.matth.controller;
 import com.matth.controller.impl.ControllerImpl;
 import com.matth.entity.dto.sys.UserInfoDto;
 import com.matth.entity.model.SysUser;
+import com.matth.entity.model.User;
 import com.matth.entity.param.SysUserParam;
 import com.matth.entity.result.ServiceResult;
 import com.matth.service.SysUserService;
