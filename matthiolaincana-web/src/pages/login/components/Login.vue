@@ -8,8 +8,8 @@
     @submit="onSubmit"
   >
     <template v-if="type == 'password'">
-      <t-form-item name="account">
-        <t-input v-model="formData.account" size="large" placeholder="请输入账号：admin">
+      <t-form-item name="username">
+        <t-input v-model="formData.username" size="large" placeholder="请输入账号：admin">
           <template #prefix-icon>
             <t-icon name="user" />
           </template>
@@ -82,15 +82,15 @@ const userStore = useUserStore();
 
 const INITIAL_DATA = {
   phone: '',
-  account: 'admin',
-  password: 'admin',
+  username: 'administrator',
+  password: '123456',
   verifyCode: '',
   checked: false,
 };
 
 const FORM_RULES = {
   phone: [{ required: true, message: '手机号必填', type: 'error' }],
-  account: [{ required: true, message: '账号必填', type: 'error' }],
+  username: [{ required: true, message: '账号必填', type: 'error' }],
   password: [{ required: true, message: '密码必填', type: 'error' }],
   verifyCode: [{ required: true, message: '验证码必填', type: 'error' }],
 };
@@ -112,13 +112,9 @@ const onSubmit = async ({ validateResult }) => {
   if (validateResult === true) {
     try {
       await userStore.login(formData.value);
-
       MessagePlugin.success('登陆成功');
-      router.push({
-        path: '/dashboard/base',
-      });
+      router.push({ path: '/dashboard/base' });
     } catch (e) {
-      console.log(e);
       MessagePlugin.error(e.message);
     }
   }

@@ -117,7 +117,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { MessagePlugin } from 'tdesign-vue-next';
 import Trend from '@/components/trend/index.vue';
-import request from '@/utils/request';
+import { request } from '@/utils/request';
 import { ResDataType } from '@/types/interface';
 import { useSettingStore } from '@/store';
 
@@ -199,7 +199,7 @@ const dataLoading = ref(false);
 const fetchData = async () => {
   dataLoading.value = true;
   try {
-    const res: ResDataType = await request.get('/api/get-list');
+    const res: ResDataType = await request.get({ url: '/api/get-list' });
     if (res.code === 0) {
       const { list = [] } = res.data;
       data.value = list;
@@ -277,9 +277,9 @@ const getContainer = () => {
 <style lang="less" scoped>
 @import '@/style/variables.less';
 .list-common-table {
-  background-color: var(--tdvns-bg-color-container);
+  background-color: var(--td-bg-color-container);
   padding: 30px 32px;
-  border-radius: var(--tdvns-border-radius);
+  border-radius: @border-radius;
 
   .table-container {
     margin-top: 30px;

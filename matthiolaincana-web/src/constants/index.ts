@@ -40,3 +40,10 @@ export const NOTIFICATION_TYPES = {
   middle: 'warning',
   high: 'danger',
 };
+
+// 通知的优先级对应的TAG类型
+export const COMPONENTS_TYPES = {
+  INPUT: 'input',
+  SELECT: 'select',
+  DATE: 'date',
+};

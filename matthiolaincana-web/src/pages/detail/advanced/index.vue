@@ -120,7 +120,7 @@ export default {
 import { ref, onMounted } from 'vue';
 import { prefix } from '@/config/global';
 import { BASE_INFO_DATA, TABLE_COLUMNS_DATA as columns, PRODUCT_LIST } from './constants';
-import request from '@/utils/request';
+import { request } from '@/utils/request';
 import { ResDataType } from '@/types/interface';
 
 import Product from './components/Product.vue';
@@ -145,7 +145,17 @@ const stepUpdate = () => {
 
 const fetchData = async () => {
   try {
-    const res: ResDataType = await request.get('/api/get-purchase-list');
+    request.get({ url: '/api/get-purchase-list', data: {} }).then((res) => {
+      if (res.code === 0) {
+        const { list = [] } = res.data;
+        data.value = list;
+        pagination.value = {
+          ...pagination.value,
+          total: list.length,
+        };
+      }
+    });
+    /*const res: ResDataType = await request.get({ url: '/api/get-purchase-list' });
     if (res.code === 0) {
       const { list = [] } = res.data;
       data.value = list;
@@ -153,7 +163,7 @@ const fetchData = async () => {
         ...pagination.value,
         total: list.length,
       };
-    }
+    }*/
   } catch (e) {
     console.log(e);
   }
