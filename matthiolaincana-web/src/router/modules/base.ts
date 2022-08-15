@@ -7,13 +7,13 @@ export default [
     component: Layout,
     redirect: '/dashboard/base',
     name: 'dashboard',
-    meta: { title: '首页', icon: DashboardIcon, hidden: true },
+    meta: { title: '仪表盘', icon: DashboardIcon, hidden: true },
     children: [
       {
         path: 'base',
         name: 'DashboardBase',
         component: () => import('@/pages/dashboard/base/index.vue'),
-        meta: { title: '仪表盘' },
+        meta: { title: '概览仪表盘' },
       },
       {
         path: 'detail',

@@ -15,6 +15,7 @@ const defaultRouterList: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: () => import('@/pages/login/index.vue'),
+    meta: { isAlive: false },
   },
   {
     path: '/',
@@ -25,6 +26,7 @@ const defaultRouterList: Array<RouteRecordRaw> = [
     path: '/:w+',
     name: '404Page',
     redirect: '/result/404',
+    meta: { isAlive: false },
   },
 ];
 

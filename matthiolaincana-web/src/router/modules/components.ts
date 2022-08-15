@@ -178,7 +178,7 @@ export default [
     name: 'result',
     component: Layout,
     redirect: '/result/success',
-    meta: { title: '结果页', icon: 'check-circle' },
+    meta: { title: '结果页', icon: 'check-circle', hidden: true },
     children: [
       {
         path: 'success',
@@ -207,8 +207,9 @@ export default [
       {
         path: '404',
         name: 'Result404',
+        isAlive: false,
         component: () => import('@/pages/result/404/index.vue'),
-        meta: { title: '访问页面不存在页' },
+        meta: { title: '访问页面不存在页', isAlive: false },
       },
       {
         path: '500',

@@ -7,7 +7,7 @@ export default [
     name: 'user',
     component: Layout,
     redirect: '/user/index',
-    meta: { title: '个人页', icon: 'user-circle' },
+    meta: { title: '个人页', icon: 'user-circle', hidden: true },
     children: [
       {
         path: 'index',
@@ -20,7 +20,7 @@ export default [
   {
     path: '/loginRedirect',
     name: 'loginRedirect',
-    meta: { title: '登录页', icon: LogoutIcon },
+    meta: { title: '登录页', icon: LogoutIcon, hidden: true },
     component: () => import('@/layouts/blank.vue'),
     children: [
       {

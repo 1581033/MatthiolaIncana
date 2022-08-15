@@ -14,7 +14,7 @@ const { whiteListRouters } = permissionStore;
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
-  document.title = typeof(to.meta.title) === "string" ? to.meta.title : "";
+  document.title = typeof(to.meta.title) === 'string' ? to.meta.title : '';
 
   const { token } = userStore;
   if (token) {
@@ -43,6 +43,7 @@ router.beforeEach(async (to, from, next) => {
           next(`/`);
         }
       } catch (error) {
+        console.log(1);
         MessagePlugin.error(error);
         next(`/login?redirect=${to.path}`);
         NProgress.done();

@@ -63,10 +63,10 @@ export default defineComponent({
     const appendNewRoute = () => {
       const {
         path,
-        meta: { title },
+        meta: { title, isAlive },
         name,
       } = route;
-      tabsRouterStore.appendTabRouterList({ path, title: title as string, name, isAlive: true });
+      tabsRouterStore.appendTabRouterList({ path, title: title as string, name, isAlive: isAlive as boolean });
     };
 
     const getTabRouterListCache = () => {

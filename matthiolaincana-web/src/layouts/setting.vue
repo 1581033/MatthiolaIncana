@@ -243,8 +243,6 @@ watchEffect(() => {
 
 .setting-layout-color-group {
   display: inline-flex;
-  width: 36px;
-  height: 36px;
   justify-content: center;
   align-items: center;
   border-radius: 50% !important;
@@ -270,12 +268,12 @@ watchEffect(() => {
   font-family: PingFang SC;
   font-style: normal;
   font-weight: 500;
-  color: var(--tdvns-text-color-primary);
+  color: var(--td-text-color-primary);
 }
 
 .setting-link {
   cursor: pointer;
-  color: var(--tdvns-brand-color);
+  color: var(--td-brand-color);
   margin-bottom: 8px;
 }
 
@@ -287,9 +285,9 @@ watchEffect(() => {
   line-height: 20px;
   font-size: 12px;
   text-align: center;
-  color: var(--tdvns-text-color-placeholder);
+  color: var(--td-text-color-placeholder);
   width: 100%;
-  background: var(--tdvns-bg-color-container);
+  background: var(--td-bg-color-container);
 }
 
 .setting-drawer-container {
@@ -299,9 +297,12 @@ watchEffect(() => {
   :deep(.t-radio-group.t-size-m) {
     min-height: 32px;
     width: 100%;
-    height: auto;
     justify-content: space-between;
     align-items: center;
+  }
+
+  :deep(.t-radio-group.t-size-m .t-radio-button) {
+    height: auto;
   }
 
   .setting-layout-drawer {
@@ -314,7 +315,7 @@ watchEffect(() => {
       display: inline-flex;
       max-height: 78px;
       padding: 8px;
-      border-radius: var(--tdvns-border-radius);
+      border-radius: @border-radius;
       border: 2px solid #e3e6eb;
       > .t-radio-button__label {
         display: inline-flex;
@@ -322,7 +323,7 @@ watchEffect(() => {
     }
 
     :deep(.t-is-checked) {
-      border: 2px solid var(--tdvns-brand-color) !important;
+      border: 2px solid var(--td-brand-color) !important;
     }
 
     :deep(.t-form__controls-content) {
@@ -338,7 +339,7 @@ watchEffect(() => {
 .setting-route-theme {
   :deep(.t-form__label) {
     min-width: 310px !important;
-    color: var(--tdvns-text-color-secondary);
+    color: var(--td-text-color-secondary);
   }
 }
 
