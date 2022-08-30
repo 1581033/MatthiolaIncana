@@ -23,7 +23,7 @@ import java.util.Map;
 @Tag(name = "/pagination",description = "页面样式查询与展示")
 @Log4j2
 @RestController
-@RequestMapping("/pagination")
+@RequestMapping("/pagination/{rn}")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PaginationController {
 
@@ -31,37 +31,37 @@ public class PaginationController {
 
     @Operation(summary = "获取表格头部", description = "获取表格头部")
     @GetMapping("/headerList")
-    public List<SysPagination> headerList(@RequestParam("routeName") String routeName){
+    public List<SysPagination> headerList(@PathVariable(name = "rn") String routeName){
         return service.headerList(routeName);
     }
 
     @Operation(summary = "获取查询表单", description = "获取查询表单")
     @GetMapping("/formList")
-    public List<SysPagination> formList(@RequestParam("routeName") String routeName){
+    public List<SysPagination> formList(@PathVariable(name = "rn") String routeName){
         return service.formList(routeName);
     }
 
     @Operation(summary = "根据表头获取特定数据", description = "根据表头获取特定数据")
     @PostMapping("/page")
-    public IPage<Object> page(@RequestBody SysPaginationParam param){
+    public IPage<Object> page(@PathVariable(name = "rn") String routeName,@RequestBody SysPaginationParam param){
         return service.page(param);
     }
 
     @Operation(summary = "根据表头获取特定数据", description = "根据表头获取特定数据")
     @PostMapping("/list")
-    public List<Object> list(@RequestBody SysPaginationParam param){
+    public List<Object> list(@PathVariable(name = "rn") String routeName,@RequestBody SysPaginationParam param){
         return service.list(param);
     }
 
     @Operation(summary = "根据表头获取特定数据", description = "根据表头获取特定数据")
     @PostMapping("/upload")
-    public void upload(MultipartFile file, @RequestBody SysPaginationParam param) throws Exception {
+    public void upload(MultipartFile file,@PathVariable(name = "rn") String routeName, @RequestBody SysPaginationParam param) throws Exception {
         service.upload(file, param);
     }
 
     @Operation(summary = "根据表头获取特定数据", description = "根据表头获取特定数据")
     @PostMapping("/download")
-    public void download(@RequestBody SysPaginationParam param){
+    public void download(@PathVariable(name = "rn") String routeName, @RequestBody SysPaginationParam param){
         service.download(param);
     }
 

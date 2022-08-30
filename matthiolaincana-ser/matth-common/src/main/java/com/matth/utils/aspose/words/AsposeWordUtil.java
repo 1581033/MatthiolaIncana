@@ -4,6 +4,7 @@ import com.aspose.words.Document;
 import com.aspose.words.DocumentBuilder;
 import com.aspose.words.LoadOptions;
 import com.aspose.words.SaveOptions;
+import com.matth.utils.aspose.Aspose;
 import com.matth.utils.aspose.AsposeUtil;
 
 import java.io.InputStream;
@@ -15,7 +16,7 @@ import java.util.Map;
  * @author Matthiola incana
  * @create 2022/6/22 15:28
  */
-public class AsposeWordUtil<T> {
+public class AsposeWordUtil<T> implements Aspose<T> {
 
     private final Document document;
 
@@ -72,6 +73,11 @@ public class AsposeWordUtil<T> {
 
     public void save(String fileName, SaveOptions saveOptions) throws Exception {
         this.document.save(fileName,saveOptions);
+    }
+
+    @Override
+    public Class<T> getEntityClass() {
+        return null;
     }
 
     public OutputStream save(OutputStream stream) throws Exception {

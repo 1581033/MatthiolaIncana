@@ -1,12 +1,17 @@
 package com.matth.utils.aspose.cells;
 
 import com.aspose.cells.*;
+import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.matth.utils.aspose.Aspose;
 import com.matth.utils.aspose.AsposeUtil;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -17,11 +22,13 @@ import java.util.stream.Collectors;
  * @author Matthiola incana
  * @create 2022/4/19 18:19
  */
-public class AsposeCellUtil<T> {
+public class AsposeCellUtil<T> implements Aspose<T> {
 
     private final Workbook workbook;
 
     private WorkbookDesigner workbookDesigner;
+
+    protected Class<T> tClass = this.currentModelClass();
 
     static {
         AsposeUtil.cellsLicaspose();
@@ -41,6 +48,16 @@ public class AsposeCellUtil<T> {
         LoadOptions loadOptions = new LoadOptions();
         loadOptions.setMemorySetting(MemorySetting.MEMORY_PREFERENCE);
         this.workbook = new Workbook(path,loadOptions);
+    }
+
+    protected Class<T> currentModelClass() {
+        Type genericSuperclass = getClass().getGenericSuperclass();
+        ParameterizedType superclass =(ParameterizedType) getClass().getGenericSuperclass();
+        return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
+    public Class<T> getEntityClass() {
+        return this.tClass;
     }
 
     public Workbook getWorkbook(){
