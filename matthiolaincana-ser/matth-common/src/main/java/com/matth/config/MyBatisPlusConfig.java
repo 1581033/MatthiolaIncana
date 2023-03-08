@@ -52,10 +52,10 @@ public class MyBatisPlusConfig implements MetaObjectHandler {
         User details = SecurityDetailsHolder.details();
         this.setFieldValByName("createTime",date,metaObject);
         this.setFieldValByName("creatorId",details.getId(),metaObject);
-        this.setFieldValByName("createUnit","1",metaObject);
+        this.setFieldValByName("createUnit",details.getDeptId(),metaObject);
         this.setFieldValByName("updateTime",date,metaObject);
         this.setFieldValByName("updateId",details.getId(),metaObject);
-        this.setFieldValByName("updateUnit","1",metaObject);
+        this.setFieldValByName("updateUnit",details.getDeptId(),metaObject);
     }
 
     @Override
@@ -63,6 +63,6 @@ public class MyBatisPlusConfig implements MetaObjectHandler {
         User details = SecurityDetailsHolder.details();
         this.setFieldValByName("updateTime",new Date(),metaObject);
         this.setFieldValByName("updateId",details.getId(),metaObject);
-        this.setFieldValByName("updateUnit","1",metaObject);
+        this.setFieldValByName("updateUnit",details.getDeptId(),metaObject);
     }
 }
