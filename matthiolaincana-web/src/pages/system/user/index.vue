@@ -1,14 +1,18 @@
 <template>
   <t-row>
     <t-col :span="2">
-      <t-card :size="settingStore.size">
-        <t-input v-model="filterText" label="部门：" :size="settingStore.size" @change="onInput" />
-        <t-tree :data="items" activable expand-on-click-node :filter="handleFilterByText" hover line />
+      <t-card :size="settingStore.size" style="min-height: 80vh">
+        <t-input v-model="filterText" :size="settingStore.size" @change="onInput">
+          <template #label>
+            <t-icon name="search" />
+          </template>
+        </t-input>
+        <t-tree :data="state.deptOptions" activable expand-on-click-node :filter="handleFilterByText" hover line @click="onChange" />
       </t-card>
     </t-col>
     <t-col :span="10">
       <x-form ref="xform" :form-data="state.requestConfig.data" :label-width="70" @reset="onReset" @submit="onSubmit" />
-      <x-tabel ref="xtabel" row-key="id" :other-columns="state.otherColumns" :config="state.requestConfig">
+      <x-tabel ref="xtabel" row-key="id" local-config :other-columns="state.otherColumns" :config="state.requestConfig">
         <template #status="{ row }">
           <t-switch v-model="row.status" :customValue="[1, 0]" />
         </template>
@@ -44,26 +48,25 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, reactive, ref } from "vue";
 import { useSettingStore } from '@/store';
 import { DialogPlugin } from 'tdesign-vue-next';
-import { request } from '@/utils/request';
 import XTabel from '@/components/x-tabel/index.vue';
 import XForm from '@/components/x-form/index.vue';
+import { request } from "@/utils/request";
 
 const settingStore = useSettingStore();
-const xtabel = ref();
-const xform = ref();
+const xtabel = ref(null);
+const xform = ref(null);
 
 const state = reactive({
   filterText: null,
   handleFilterByText: null,
   rules: {},
   requestConfig: {
-    url: '/sysUser/queryUserInformation',
+    url: '/sysUser/page',
     data: {
-      page: 1,
-      size: 10,
+      deptId: '',
     },
   },
   otherColumns: [
@@ -75,102 +78,26 @@ const state = reactive({
       fixed: 'right',
     },
   ],
+  deptOptions: [],
 });
-
-const items = [
-  {
-    value: '1',
-    label: '1',
-    children: [
-      {
-        value: '1.1',
-        label: '1.1',
-        children: [
-          {
-            value: '1.1.1',
-            label: '1.1.1',
-            children: [
-              {
-                value: '1.1.1.1',
-                label: '1.1.1.1',
-              },
-              {
-                value: '1.1.1.2',
-                label: '1.1.1.2',
-              },
-            ],
-          },
-          {
-            value: '1.1.2',
-            label: '1.1.2',
-            children: [
-              {
-                value: '1.1.2.1',
-                label: '1.1.2.1',
-              },
-              {
-                value: '1.1.2.2',
-                label: '1.1.2.2',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        value: '1.2',
-        label: '1.2',
-        children: [
-          {
-            value: '1.2.1',
-            label: '1.2.1',
-            children: [
-              {
-                value: '1.2.1.1',
-                label: '1.2.1.1',
-              },
-              {
-                value: '1.2.1.2',
-                label: '1.2.1.2',
-              },
-            ],
-          },
-          {
-            value: '1.2.2',
-            label: '1.2.2',
-            children: [
-              {
-                value: '1.2.2.1',
-                label: '1.2.2.1',
-              },
-              {
-                value: '1.2.2.2',
-                label: '1.2.2.2',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: '2',
-    label: '2',
-    children: [
-      {
-        value: '2.1',
-        label: '2.1',
-      },
-      {
-        value: '2.2',
-        label: '2.2',
-      },
-    ],
-  },
-];
 
 const filterText = ref('');
 const handleFilterByText = ref(null);
 
+const treeData = (value) => {
+  request.post({ url: '/department/options', data: { currenId: value } }).then((res) => {
+    state.deptOptions = res.data;
+  });
+};
+
+onMounted(() => {
+  treeData('');
+});
+
+const onChange = (value) => {
+  state.requestConfig.data.deptId = value.node.data.value;
+  onSubmit();
+};
 const onReset = () => {
   onSubmit();
 };
