@@ -63,7 +63,8 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8082","http://localhost:8000"));
+        //configuration.setAllowedOrigins(Arrays.asList("http://localhost:8082","http://localhost:8000"));
+        configuration.addAllowedOriginPattern("*");
         configuration.setAllowedMethods(Arrays.asList("POST", "GET", "OPTIONS", "DELETE", "PUT", "HEAD"));
         /*configuration.setAllowedHeaders(Arrays.asList("Content-Type", "X-Token"));*/
         configuration.setAllowCredentials(true);

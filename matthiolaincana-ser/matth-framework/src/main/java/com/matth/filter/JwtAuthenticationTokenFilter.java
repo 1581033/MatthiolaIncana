@@ -39,7 +39,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
            String header = request.getHeader("Authorization");
            if (StringUtils.hasLength(header) && header.startsWith(STARTWI)){
                String key = header.replace(STARTWI, "");
-               String token = Optional.ofNullable(redisTemplate.opsForValue().get(key)).orElseThrow(() -> new CredentialsExpiredException(null));
+               key = "qasdfrsx";
+               String token = header.replace(STARTWI, "");
+               //String token = Optional.ofNullable(redisTemplate.opsForValue().get(key)).orElseThrow(() -> new CredentialsExpiredException(null));
                SecurityContextHolder.getContext().setAuthentication(userService.loadUserByToken(token,key));
            }
            filterChain.doFilter(request, response);

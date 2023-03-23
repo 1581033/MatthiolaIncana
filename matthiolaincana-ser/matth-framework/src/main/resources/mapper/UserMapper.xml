@@ -8,6 +8,7 @@
         <result column="username" jdbcType="VARCHAR" property="username" />
         <result column="password" jdbcType="VARCHAR" property="password" />
         <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+        <result column="dept_id" jdbcType="VARCHAR" property="deptId" />
         <result column="status" jdbcType="VARCHAR" property="status" />
         <result column="telephone" jdbcType="VARCHAR" property="telephone" />
         <result column="enabled" jdbcType="BOOLEAN" property="enabled" />
@@ -18,7 +19,7 @@
     </resultMap>
 
     <sql id="Column_List">
-        su.id,su.name,su.username,su.password,su.avatar,su.status,su.telephone,su.enabled,su.account_non_locked,sr.code as srcode
+        su.id,su.name,su.username,su.dept_id,su.password,su.avatar,su.status,su.telephone,su.enabled,su.account_non_locked,sr.code as srcode
     </sql>
 
     <select id="selectByUserName" resultMap="BaseResultMap">

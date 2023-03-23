@@ -27,12 +27,13 @@ public class AutOutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String header = request.getHeader("Authorization");
+        /*String header = request.getHeader("Authorization");
         String token = header.replace(STARTWI, "");
         if (Boolean.TRUE.equals(redisTemplate.delete(token))) {
             ServiceResult.requestSuccess(response, ServiceCode.LOGINOUTSUCCESS);
         }else {
             ServiceResult.requestError(response, ServiceCode.ERROR);
-        }
+        }*/
+        ServiceResult.requestSuccess(response, ServiceCode.LOGINOUTSUCCESS);
     }
 }
