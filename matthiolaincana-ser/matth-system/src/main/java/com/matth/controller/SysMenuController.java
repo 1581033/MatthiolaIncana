@@ -30,8 +30,8 @@ public class SysMenuController extends ControllerImpl<SysMenuService, SysMenu> {
 
     @Operation(summary = "获取菜单", description = "获取菜单")
     @PostMapping("/maun")
-    public ServiceResult<?> maun(@RequestBody List<String> list){
-        return service.maun(list);
+    public ServiceResult<?> maun(){
+        return service.maun();
     }
 
     @Operation(summary = "获取菜单信息", description = "获取菜单信息")
