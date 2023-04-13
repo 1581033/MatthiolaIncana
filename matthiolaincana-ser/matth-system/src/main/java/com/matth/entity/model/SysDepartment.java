@@ -2,6 +2,7 @@ package com.matth.entity.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fhs.core.trans.vo.TransPojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,11 +15,9 @@ import java.util.List;
  * @create 2022/7/15 15:09
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @TableName(value = "sys_department")
 @EqualsAndHashCode(callSuper = true)
-public class SysDepartment extends BaseModel {
+public class SysDepartment extends BaseModel implements TransPojo {
 
     @TableField
     private String code;
