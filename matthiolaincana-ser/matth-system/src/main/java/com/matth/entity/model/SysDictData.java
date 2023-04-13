@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
  * @create 2022/1/22 10:34
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @TableName(value = "sys_dict_data")
 @EqualsAndHashCode(callSuper = true)
 public class SysDictData extends BaseModel {
