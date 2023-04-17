@@ -1,10 +1,11 @@
 package com.matth.aop;
 
+import cn.hutool.http.useragent.UserAgent;
+import cn.hutool.http.useragent.UserAgentUtil;
 import com.alibaba.fastjson2.JSONObject;
 import com.matth.entity.model.OperationLog;
 import com.matth.mapper.OperationLogMapper;
 import com.matth.utils.request.IpUtils;
-import eu.bitwalker.useragentutils.UserAgent;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -34,7 +35,7 @@ public class OperationLogAspect {
 
     @Around(value = "@annotation(api)")
     public Object around(ProceedingJoinPoint joinPoint, Operation api) throws Throwable {
-        UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+        UserAgent userAgent = UserAgentUtil.parse(request.getHeader("User-Agent"));
         OperationLog operationLog = new OperationLog();
         operationLog.setName(api.summary());
         operationLog.setIp(IpUtils.getIpAddress(request));
@@ -42,19 +43,18 @@ public class OperationLogAspect {
         operationLog.setUrl(request.getRequestURI());
         operationLog.setStatus(1);
         operationLog.setStartTime(new Date());
-        operationLog.setBrowser(userAgent.getBrowser().getName());
-        operationLog.setMac(userAgent.getOperatingSystem().getName());
-        Object[] args = joinPoint.getArgs();
+        operationLog.setBrowser(userAgent.getBrowser().toString());
+        operationLog.setMac(userAgent.getPlatform().toString());
         operationLog.setParams(JSONObject.toJSONString(joinPoint.getArgs()));
         try {
             return joinPoint.proceed();
         } catch (Throwable e) {
             operationLog.setStatus(2);
+            e.printStackTrace();
         } finally {
             operationLog.setEndTime(new Date());
             operationLog.setSpendTime(operationLog.getEndTime().getTime() - operationLog.getStartTime().getTime());
-            log.info(operationLog);
-            //logMapper.insert(operationLog);
+            logMapper.insert(operationLog);
         }
         return joinPoint.proceed();
     }
