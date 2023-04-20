@@ -19,7 +19,7 @@ public class BaseModel implements Serializable {
     @Schema(title = "唯一标识")
     protected String id;
 
-    @TableField("deleted")
+    @TableField(value = "deleted", select = false)
     @Schema(title = "删除标志", hidden = true)
     protected Integer deleted = 0;
 

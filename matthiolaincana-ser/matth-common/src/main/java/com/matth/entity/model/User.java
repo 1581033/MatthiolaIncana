@@ -15,6 +15,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,6 +43,9 @@ public class User extends BaseModel implements UserDetails {
     @TableField("avatar")
     private String avatar;
 
+    @TableField("dept_id")
+    private String deptId;
+
     @AntTabel(title = "状态")
     @TableField("status")
     private String status;
@@ -54,7 +58,7 @@ public class User extends BaseModel implements UserDetails {
     private String lastLoginIp;
 
     @TableField("last_login_time")
-    private String lastLoginTime;
+    private Date lastLoginTime;
 
     @TableField(exist = false)
     private List<String> roles;
