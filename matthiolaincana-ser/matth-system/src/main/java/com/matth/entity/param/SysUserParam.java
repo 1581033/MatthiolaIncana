@@ -13,6 +13,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class SysUserParam extends BaseParam {
 
+    private String deptId;
+
     private String id;
 
     private String name;

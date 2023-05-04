@@ -5,11 +5,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.matth.entity.model.SysRole;
 import com.matth.entity.model.SysRoleMenu;
-import com.matth.entity.model.SysUser;
 import com.matth.entity.param.SysRoleParam;
 import com.matth.entity.result.ServiceResult;
 import com.matth.mapper.SysMenuMapper;
-import com.matth.mapper.SysRoleMapper;
+import com.matth.mapper.RoleMapper;
 import com.matth.mapper.SysRoleMenuMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -27,7 +26,7 @@ import java.util.UUID;
 @Service
 @Log4j2
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class SysRoleService extends ServiceImpl<SysRoleMapper, SysRole> {
+public class RoleService extends ServiceImpl<RoleMapper, SysRole> {
 
     private final SysMenuMapper sysMenuMapper;
     private final SysRoleMenuMapper sysRoleMenuMapper;

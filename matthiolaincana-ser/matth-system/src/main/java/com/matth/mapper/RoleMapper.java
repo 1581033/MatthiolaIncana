@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * @create 2021/11/12 11:14
  */
 @Repository
-public interface SysRoleMapper  extends BaseMapper<SysRole> {
+public interface RoleMapper extends BaseMapper<SysRole> {
 }

@@ -8,6 +8,7 @@ import com.matth.entity.model.SysMenu;
 import com.matth.entity.model.SysRole;
 import com.matth.entity.param.SysMenuParam;
 import com.matth.entity.result.ServiceResult;
+import com.matth.handler.SecurityDetailsHolder;
 import com.matth.mapper.SysMenuMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -15,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Matthiola incana
@@ -31,8 +34,9 @@ public class SysMenuService extends ServiceImpl<SysMenuMapper, SysMenu> {
         return null;
     }
 
-    public ServiceResult<?> maun(List<String> list) {
-        List<MenuDto> menuDto = baseMapper.selectMenuByRolesId(list);
+    public ServiceResult<?> maun() {
+        List<String> roles = SecurityDetailsHolder.roles();
+        List<MenuDto> menuDto = baseMapper.selectMenuByRolesId(roles);
         return ServiceResult.success(menuDto);
     }
 

@@ -1,13 +1,12 @@
 package com.matth.entity.model;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.matth.antui.AntTabel;
-import lombok.AllArgsConstructor;
+import com.fhs.core.trans.anno.Trans;
+import com.fhs.core.trans.constant.TransType;
+import com.fhs.core.trans.vo.TransPojo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -16,17 +15,13 @@ import java.util.Date;
  * @create 2021/11/10 21:16
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @TableName(value = "sys_user")
 @EqualsAndHashCode(callSuper = true)
-public class SysUser extends BaseModel {
+public class SysUser extends BaseModel implements TransPojo {
 
-    @AntTabel(title = "用户昵称")
     @TableField("name")
     private String name;
 
-    @AntTabel(title = "用户名称")
     @TableField("username")
     private String username;
 
@@ -36,11 +31,9 @@ public class SysUser extends BaseModel {
     @TableField("avatar")
     private String avatar;
 
-    @AntTabel(title = "状态")
     @TableField("status")
     private Integer status;
 
-    @AntTabel(title = "手机号码")
     @TableField("telephone")
     private String telephone;
 
@@ -48,16 +41,16 @@ public class SysUser extends BaseModel {
     private String lastLoginIp;
 
     @TableField("last_login_time")
-    private String lastLoginTime;
-
-    @AntTabel(title = "创建时间")
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private Date createTime;
+    private Date lastLoginTime;
 
     @TableField("account_non_locked")
     private boolean accountNonLocked;
 
     @TableField("enabled")
     private boolean enabled;
+
+    @TableField
+    @Trans(type = TransType.SIMPLE,target = SysDepartment.class,fields = {"name"},alias = "dept")
+    private String deptId;
 
 }

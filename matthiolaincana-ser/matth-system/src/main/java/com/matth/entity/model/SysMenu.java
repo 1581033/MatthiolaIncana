@@ -17,8 +17,6 @@ import java.util.List;
  * @create 2021/11/10 20:40
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @TableName(value = "sys_menu")
 @EqualsAndHashCode(callSuper = true)
 public class SysMenu extends BaseModel {

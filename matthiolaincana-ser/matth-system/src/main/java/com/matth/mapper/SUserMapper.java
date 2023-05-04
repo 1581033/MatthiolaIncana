@@ -9,12 +9,14 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author Matthiola incana
- * @create 2021/11/12 10:44
+ * @create 2023/2/22 10:17
  */
 @Mapper
 @Repository
-public interface SysUserMapper extends BaseMapper<SysUser> {
+public interface SUserMapper extends BaseMapper<SysUser> {
+
     UserInfoDto selectByIdForRole(@Param("id") String s);
 
     UserInfoDto selectByUserNameForRole(@Param("username")String tokenUserName);
+
 }

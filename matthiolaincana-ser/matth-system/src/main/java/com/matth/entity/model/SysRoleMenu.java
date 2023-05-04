@@ -14,14 +14,9 @@ import lombok.NoArgsConstructor;
  * @create 2021/12/17 10:13
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @TableName(value = "sys_role_menu")
 @EqualsAndHashCode(callSuper = true)
 public class SysRoleMenu extends BaseModel {
-
-    @TableId(value = "id",type = IdType.ASSIGN_UUID)
-    private String id;
 
     @TableField("role_id")
     private String roleId;

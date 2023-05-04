@@ -17,8 +17,6 @@ import java.util.List;
  * @create 2021/11/12 11:16
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @TableName(value = "sys_permission")
 @EqualsAndHashCode(callSuper = true)
 public class SysPermission extends BaseModel {
