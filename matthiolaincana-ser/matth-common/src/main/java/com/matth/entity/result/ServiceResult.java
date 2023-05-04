@@ -33,7 +33,7 @@ public class ServiceResult<T> implements Serializable {
     /**
      * 传输的对象数据
      */
-    private T result;
+    private T data;
     /**
      * 时间戳
      */
@@ -48,36 +48,36 @@ public class ServiceResult<T> implements Serializable {
      */
     public ServiceResult() { }
 
-    public ServiceResult(ServiceCode serviceCode, T result){
-        this(serviceCode.getSuccess(),serviceCode.getCode(),serviceCode.getMessage(),result);
+    public ServiceResult(ServiceCode serviceCode, T data){
+        this(serviceCode.getSuccess(),serviceCode.getCode(),serviceCode.getMessage(),data);
     }
 
-    public ServiceResult(Boolean success,Integer code,String message,T result){
-        this(success,code,message,result,new Date());
+    public ServiceResult(Boolean success,Integer code,String message,T data){
+        this(success,code,message,data,new Date());
     }
 
-    public ServiceResult(Boolean success, Integer code, String message, T result, Date timestamp) {
+    public ServiceResult(Boolean success, Integer code, String message, T data, Date timestamp) {
         this.success = success;
         this.code = code;
         this.message = message;
-        this.result = result;
+        this.data = data;
         this.timestamp = timestamp;
     }
 
-    public static <T> ServiceResult<T> success(T result) {
-        return success(result,ServiceCode.SUCCESS.getMessage());
+    public static <T> ServiceResult<T> success(T data) {
+        return success(data,ServiceCode.SUCCESS.getMessage());
     }
 
-    public static <T> ServiceResult<T> success(T result, String message) {
-        return success(result,ServiceCode.SUCCESS.getCode(),message);
+    public static <T> ServiceResult<T> success(T data, String message) {
+        return success(data,ServiceCode.SUCCESS.getCode(),message);
     }
 
-    public static <T> ServiceResult<T> success(T result, Integer code, String message) {
-        return new ServiceResult<T>(true,code,message,result);
+    public static <T> ServiceResult<T> success(T data, Integer code, String message) {
+        return new ServiceResult<T>(true,code,message,data);
     }
 
-    public static <T> ServiceResult<T> success(T result, ServiceCode serviceCode) {
-        return new ServiceResult<T>(serviceCode,result);
+    public static <T> ServiceResult<T> success(T data, ServiceCode serviceCode) {
+        return new ServiceResult<T>(serviceCode,data);
     }
 
     public static <T> ServiceResult<T> error() {
@@ -88,20 +88,20 @@ public class ServiceResult<T> implements Serializable {
         return error(message,null);
     }
 
-    public static <T> ServiceResult<T> error(String message,T result) {
-        return new ServiceResult<T>(ServiceCode.ERROR.getSuccess(),ServiceCode.ERROR.getCode(),message,result);
+    public static <T> ServiceResult<T> error(String message,T data) {
+        return new ServiceResult<T>(ServiceCode.ERROR.getSuccess(),ServiceCode.ERROR.getCode(),message,data);
     }
 
     public static <T> ServiceResult<T> error(ServiceCode serviceCode) {
         return new ServiceResult<T>(serviceCode,null);
     }
 
-    public static <T> ServiceResult<T> error(ServiceCode serviceCode,T result) {
-        return new ServiceResult<T>(serviceCode,result);
+    public static <T> ServiceResult<T> error(ServiceCode serviceCode,T data) {
+        return new ServiceResult<T>(serviceCode,data);
     }
 
-    public static <T> ServiceResult<T> exception(ServiceCode serviceCode,T result) {
-        return new ServiceResult<T>(serviceCode,result);
+    public static <T> ServiceResult<T> exception(ServiceCode serviceCode,T data) {
+        return new ServiceResult<T>(serviceCode,data);
     }
 
     public static <T> void requestSuccess(HttpServletResponse response, ServiceCode serviceCode){
@@ -141,7 +141,7 @@ public class ServiceResult<T> implements Serializable {
 
     @Override
     public String toString() {
-        return "ServiceResult{" + "success=" + success + ", code=" + code + ", message=" + message + ", result=" + result + ", timestamp=" + timestamp + '}';
+        return "ServiceResult{" + "success=" + success + ", code=" + code + ", message=" + message + ", data=" + data + ", timestamp=" + timestamp + '}';
     }
 
 }

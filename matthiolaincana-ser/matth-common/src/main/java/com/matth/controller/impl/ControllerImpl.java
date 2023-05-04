@@ -8,6 +8,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public abstract class ControllerImpl<S extends IService<T>, T> implements IContr
     @Operation(summary = "保存/更新业务信息")
     @PostMapping
     @Override
-    public T saveOrUpdate(T t) throws Exception {
+    public T saveOrUpdate(@RequestBody T t) throws Exception {
         this.service.saveOrUpdate(t);
         return t;
     }
@@ -46,6 +47,7 @@ public abstract class ControllerImpl<S extends IService<T>, T> implements IContr
     @DeleteMapping({"/{id}"})
     @Override
     public int delete(String id) throws Exception {
+        System.out.println(id);
         this.service.removeById(id);
         return 1;
     }
