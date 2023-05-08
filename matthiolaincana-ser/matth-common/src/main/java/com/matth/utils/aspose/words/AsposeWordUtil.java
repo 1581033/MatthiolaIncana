@@ -75,7 +75,6 @@ public class AsposeWordUtil<T> implements Aspose<T> {
         this.document.save(fileName,saveOptions);
     }
 
-    @Override
     public Class<T> getEntityClass() {
         return null;
     }

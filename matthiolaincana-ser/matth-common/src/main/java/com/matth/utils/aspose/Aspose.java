@@ -10,10 +10,10 @@ import java.io.OutputStream;
  */
 public interface Aspose<T> {
 
-    Class<T> getEntityClass();
+    //Class<T> getEntityClass();
 
-    OutputStream save(OutputStream stream) throws Exception;
+    //OutputStream save(OutputStream stream) throws Exception;
 
-    void save(String path) throws Exception;
+    //void save(String path) throws Exception;
 
 }

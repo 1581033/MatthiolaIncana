@@ -25,10 +25,7 @@ import java.util.stream.Collectors;
 public class AsposeCellUtil<T> implements Aspose<T> {
 
     private final Workbook workbook;
-
     private WorkbookDesigner workbookDesigner;
-
-    protected Class<T> tClass = this.currentModelClass();
 
     static {
         AsposeUtil.cellsLicaspose();
@@ -56,9 +53,9 @@ public class AsposeCellUtil<T> implements Aspose<T> {
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    public Class<T> getEntityClass() {
+    /*public Class<T> getEntityClass() {
         return this.tClass;
-    }
+    }*/
 
     public Workbook getWorkbook(){
         return workbook;
