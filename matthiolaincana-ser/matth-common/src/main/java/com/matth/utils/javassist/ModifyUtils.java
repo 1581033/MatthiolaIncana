@@ -20,6 +20,8 @@ public class ModifyUtils {
 
     private CtMethod ctMethod;
 
+    private CtField ctField;
+
     public ModifyUtils(){
         classPool = ClassPool.getDefault();
     }
@@ -49,6 +51,27 @@ public class ModifyUtils {
         ctMethod = ctClass.getDeclaredMethod(method,classList);
     }
 
+    public void modifyNested(String clazz, String clazs, String method, List<Class<?>> classes) throws Exception {
+        ctClass = classPool.getCtClass(clazz);
+        //CtClass[] classList = classes.stream().map(s -> classPool.makeClass(s.getName())).toArray(CtClass[]::new);
+        for (CtClass nestedClass : ctClass.getNestedClasses()) {
+            if (clazs.equals(nestedClass.getName())){
+                System.out.println("64 ----------->" + nestedClass.getName());
+                CtMethod declaredMethod = nestedClass.getDeclaredMethod(method);
+                System.out.println("66 ----------->" + declaredMethod.getName());
+                declaredMethod.setBody("{return false;}");
+                System.out.println(declaredMethod.getReturnType());
+                nestedClass.writeFile("C:\\Users\\十六夜\\Desktop\\");
+            }
+        }
+        ctClass.writeFile("C:\\Users\\十六夜\\Desktop\\");
+    }
+
+    public void modifyField(String clazz, String field) throws Exception {
+        ctClass = classPool.getCtClass(clazz);
+        ctField = ctClass.getDeclaredField(field);
+    }
+
     public void addField(String field) throws CannotCompileException {
         ctClass.addField(CtField.make(field,ctClass));
     }
@@ -65,6 +88,10 @@ public class ModifyUtils {
         return ctClass.getDeclaredMethods(method);
     }
 
+    public void setValue(String body) throws CannotCompileException {
+        //ctField.setAttribute();
+    }
+
     public void setBody(String body) throws CannotCompileException {
         ctMethod.setBody(body);
     }
@@ -76,7 +103,7 @@ public class ModifyUtils {
     public void rest(String path) throws NotFoundException, IOException, CannotCompileException {
         writeFile(path);
         System.out.println("写入" + path);
-        classPool.getCtClass(ctClass.getName());
+        //classPool.getCtClass(ctClass.getName());
     }
 
     public static void modifyWordsJar() throws Exception {
@@ -97,6 +124,15 @@ public class ModifyUtils {
         modifyUtils.modify("com.aspose.cells.k65","a", Arrays.asList(Document.class));
         modifyUtils.setBody("{com.aspose.cells.License.a = \"\";a = this;com.aspose.cells.z7x.a();}");
         modifyUtils.setPath("C:\\Users\\十六夜\\Desktop\\");
+    }
+
+    public static void modifyBrowserJar() throws Exception {
+        String path = "C:\\Users\\十六夜\\Desktop\\jxbrowser-7.12.2.jar";
+        ModifyUtils modifyUtils = new ModifyUtils(path);
+        modifyUtils.modifyNested("com.teamdev.jxbrowser.internal.rpc.transport.ConnectionServer", "com.teamdev.jxbrowser.internal.rpc.transport.ConnectionServer$AcceptConnections","validateLicence", Arrays.asList(Void.class));
+        //modifyUtils.setBody("{return false;}");
+        //modifyUtils.setPath("C:\\Users\\十六夜\\Desktop\\jxbrowser-7.12.3");
+        //modifyUtils.writeFile("C:\\Users\\十六夜\\Desktop\\");
     }
 
 

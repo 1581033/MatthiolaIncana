@@ -32,7 +32,7 @@ public class JwtTokenUtil {
                 .setNotBefore(new Date())
                 .setIssuer(ISSUER)
                 .setAudience(username)
-                .setExpiration(DateUtils.parseDate(LocalDateTime.now().plusHours(2)))
+                .setExpiration(DateUtils.parseDate(LocalDateTime.now().plusHours(12)))
                 .signWith(SignatureAlgorithm.HS256,tokenSecret)
                 .compact();
     }
