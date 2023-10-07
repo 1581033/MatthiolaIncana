@@ -76,10 +76,16 @@ mybatis-plus:
   configuration:
     cache-enabled: true
     map-underscore-to-camel-case: true
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     banner: false
     db-config:
       logic-not-delete-value: 0
       logic-delete-value: 1
       logic-delete-field: deleted
+
+easy-trans:
+  is-enable-tile: true
+  is-enable-redis: false
+  dict-use-redis: false
 
