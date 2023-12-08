@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="matth-main" />
+        <module name="matth-common" />
+        <module name="matth-log" />
+        <module name="matth-monitor" />
+        <module name="matth-framework" />
+        <module name="matth-pagination" />
+        <module name="matth-system" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="matth-common" options="-parameters" />
+      <module name="matth-framework" options="-parameters" />
+      <module name="matth-log" options="-parameters" />
+      <module name="matth-main" options="-parameters" />
+      <module name="matth-monitor" options="-parameters" />
+      <module name="matth-pagination" options="-parameters" />
+      <module name="matth-system" options="-parameters" />
+    </option>
+  </component>
+</project>

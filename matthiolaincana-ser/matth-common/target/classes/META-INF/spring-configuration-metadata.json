@@ -1,0 +1,37 @@
+{
+  "groups": [
+    {
+      "name": "spring.ftp",
+      "type": "com.matth.entity.model.FtpConfig",
+      "sourceType": "com.matth.entity.model.FtpConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.ftp.dest-path",
+      "type": "java.lang.String",
+      "sourceType": "com.matth.entity.model.FtpConfig"
+    },
+    {
+      "name": "spring.ftp.host",
+      "type": "java.lang.String",
+      "sourceType": "com.matth.entity.model.FtpConfig"
+    },
+    {
+      "name": "spring.ftp.password",
+      "type": "java.lang.String",
+      "sourceType": "com.matth.entity.model.FtpConfig"
+    },
+    {
+      "name": "spring.ftp.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.matth.entity.model.FtpConfig"
+    },
+    {
+      "name": "spring.ftp.username",
+      "type": "java.lang.String",
+      "sourceType": "com.matth.entity.model.FtpConfig"
+    }
+  ],
+  "hints": []
+}

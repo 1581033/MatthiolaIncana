@@ -1,0 +1,5 @@
+com\matth\entity\param\SysPaginationParam.class
+com\matth\controller\PaginationController.class
+com\matth\service\PaginationService.class
+com\matth\mapper\PaginationMapper.class
+com\matth\entity\model\SysPagination.class

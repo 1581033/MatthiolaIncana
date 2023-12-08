@@ -21,4 +21,6 @@ public class SysMenuParam extends BaseParam {
 
     private String parentId;
 
+    private String hideChildrenInMenu;
+
 }
