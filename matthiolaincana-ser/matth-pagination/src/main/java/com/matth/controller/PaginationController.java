@@ -44,13 +44,13 @@ public class PaginationController {
     @Operation(summary = "根据表头获取特定数据", description = "根据表头获取特定数据")
     @PostMapping("/page")
     public IPage<Object> page(@PathVariable(name = "rn") String routeName,@RequestBody SysPaginationParam param){
-        return service.page(param);
+        return service.page(routeName, param);
     }
 
     @Operation(summary = "根据表头获取特定数据", description = "根据表头获取特定数据")
     @PostMapping("/list")
     public List<Object> list(@PathVariable(name = "rn") String routeName,@RequestBody SysPaginationParam param){
-        return service.list(param);
+        return service.list(routeName, param);
     }
 
     @Operation(summary = "根据表头获取特定数据", description = "根据表头获取特定数据")
