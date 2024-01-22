@@ -24,10 +24,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -43,6 +40,7 @@ public class PaginationService extends ServiceImpl<PaginationMapper, SysPaginati
         LambdaQueryWrapper<SysPagination> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SysPagination::getTableName,routeName);
         wrapper.orderByAsc(SysPagination::getSortOrder);
+        wrapper.in(SysPagination::getStatus,1,2);
         return list(wrapper);
     }
 
@@ -51,56 +49,24 @@ public class PaginationService extends ServiceImpl<PaginationMapper, SysPaginati
         wrapper.eq(SysPagination::getTableName,routeName);
         wrapper.isNotNull(SysPagination::getInquiryMode);
         wrapper.orderByAsc(SysPagination::getSortOrder);
+        wrapper.eq(SysPagination::getStatus,1);
         return list(wrapper);
     }
 
-    public IPage<Object> page(SysPaginationParam param) {
-        Object[] roles = SecurityDetailsHolder.roles();
-
-        System.out.println(SecurityDetailsHolder.roles());
-        Map<String, Object> map = param.getMap();
-        if (!ObjectUtils.isEmpty(param.getRouteName())){
-            LambdaQueryWrapper<SysPagination> wrapper = new LambdaQueryWrapper<>();
-            wrapper.eq(SysPagination::getTableName,param.getRouteName());
-            QueryWrapper<Object> queryWrapper = new QueryWrapper<>();
-            String[] stringList;
-            if (CollectionUtils.isEmpty(map)){
-                stringList = list(wrapper).stream().map(s -> StrUtil.toUnderlineCase(s.getColKey())).toArray(String[]::new);
-            } else {
-                stringList = list(wrapper).stream().peek(s -> {
-                    if (StringUtils.hasLength(s.getInquiryMode()) && !ObjectUtils.isEmpty(map.get(s.getColKey()))) {
-                        queryWrapper.eq(StrUtil.toUnderlineCase(s.getColKey()), map.get(s.getColKey()));
-                    }
-                }).map(s -> StrUtil.toUnderlineCase(s.getColKey())).toArray(String[]::new);
-            }
-            queryWrapper.select(stringList);
-            return baseMapper.selectObjsByPage(new Page<>(param.getPage(), param.getSize()), queryWrapper, "sys_user");
+    public IPage<Object> page(String routeName, SysPaginationParam param) {
+        QueryWrapper<Object> queryWrapper = cnstructor(param.getMap(), routeName);
+        if (ObjectUtils.isEmpty(queryWrapper)){
+            return null;
         }
-        return null;
+        return baseMapper.selectObjsByPage(new Page<>(param.getPage(), param.getSize()), queryWrapper, StrUtil.toUnderlineCase(routeName));
     }
 
-    public List<Object> list(SysPaginationParam param) {
-        Map<String, Object> map = param.getMap();
-        if (!ObjectUtils.isEmpty(param.getRouteName())){
-            LambdaQueryWrapper<SysPagination> wrapper = new LambdaQueryWrapper<>();
-            wrapper.eq(SysPagination::getTableName,param.getRouteName());
-            QueryWrapper<Object> queryWrapper = new QueryWrapper<>();
-            String[] stringList;
-            if (CollectionUtils.isEmpty(map)){
-                stringList = list(wrapper).stream().map(s -> StrUtil.toUnderlineCase(s.getColKey())).toArray(String[]::new);
-            } else {
-                stringList = list(wrapper).stream().peek(s -> {
-                    if (StringUtils.hasLength(s.getInquiryMode()) && !ObjectUtils.isEmpty(map.get(s.getColKey()))) {
-                        queryWrapper.eq(StrUtil.toUnderlineCase(s.getColKey()), map.get(s.getColKey()));
-                    }
-                }).map(s -> StrUtil.toUnderlineCase(s.getColKey())).toArray(String[]::new);
-            }
-            queryWrapper.select(stringList);
-            log.info(queryWrapper.getSqlSelect());
-            log.info(queryWrapper.getCustomSqlSegment());
-            return baseMapper.selectObjsByList(queryWrapper, "sys_user");
+    public List<Object> list(String routeName,SysPaginationParam param) {
+        QueryWrapper<Object> queryWrapper = cnstructor(param.getMap(), routeName);
+        if (ObjectUtils.isEmpty(queryWrapper)){
+            return null;
         }
-        return null;
+        return baseMapper.selectObjsByList(queryWrapper, StrUtil.toUnderlineCase(routeName));
     }
 
     public void upload(MultipartFile file, SysPaginationParam param) throws Exception {
@@ -123,4 +89,29 @@ public class PaginationService extends ServiceImpl<PaginationMapper, SysPaginati
         AsposeCellUtil<Object> asposeCellUtil = new AsposeCellUtil<>();
 
     }
+
+    private QueryWrapper<Object> cnstructor(Map<String, Object> map,String routeName){
+        if (!StringUtils.hasLength(routeName)){
+            return null;
+        }
+        LambdaQueryWrapper<SysPagination> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SysPagination::getTableName,routeName);
+        wrapper.eq(SysPagination::getStatus, 1);
+        QueryWrapper<Object> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("deleted", 0);
+        List<String> arrayList = new ArrayList<>();
+        if (CollectionUtils.isEmpty(map)){
+            arrayList.addAll(list(wrapper).stream().map(s -> StrUtil.toUnderlineCase(s.getColKey())).collect(Collectors.toList()));
+        } else {
+            arrayList.addAll(list(wrapper).stream().peek(s -> {
+                if (StringUtils.hasLength(s.getInquiryMode()) && !ObjectUtils.isEmpty(map.get(s.getColKey()))) {
+                    queryWrapper.eq(StrUtil.toUnderlineCase(s.getColKey()), map.get(s.getColKey()));
+                }
+            }).map(s -> StrUtil.toUnderlineCase(s.getColKey())).collect(Collectors.toList()));
+        }
+        arrayList.add("id");
+        queryWrapper.select(arrayList.toArray(new String[0]));
+        return queryWrapper;
+    }
+
 }
