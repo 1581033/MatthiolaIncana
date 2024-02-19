@@ -15,4 +15,6 @@ public class DepartmentParam extends BaseParam {
 
     private Boolean isRole = false;
 
+    private String code;
+
 }
