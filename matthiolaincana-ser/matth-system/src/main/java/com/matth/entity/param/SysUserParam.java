@@ -27,6 +27,8 @@ public class SysUserParam extends BaseParam {
 
     private String telephone;
 
+    private String password;
+
     private List<String> dateTime;
 
 }
