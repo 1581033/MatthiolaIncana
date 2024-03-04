@@ -11,6 +11,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class DepartmentParam extends BaseParam {
 
+    private String id;
+
     private String currenId;
 
     private Boolean isRole = false;
