@@ -10,4 +10,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class SysMenuParam extends BaseParam {
+
+    private String id;
+    
 }
