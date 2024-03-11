@@ -12,5 +12,7 @@ import lombok.EqualsAndHashCode;
 public class SysMenuParam extends BaseParam {
 
     private String id;
-    
+
+    private String name;
+
 }
