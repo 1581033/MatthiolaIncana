@@ -13,6 +13,8 @@ public class SysMenuParam extends BaseParam {
 
     private String id;
 
+    private String path;
+
     private String name;
 
 }
