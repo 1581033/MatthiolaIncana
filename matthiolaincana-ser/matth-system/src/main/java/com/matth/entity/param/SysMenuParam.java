@@ -17,4 +17,6 @@ public class SysMenuParam extends BaseParam {
 
     private String name;
 
+    private String hidden;
+
 }
