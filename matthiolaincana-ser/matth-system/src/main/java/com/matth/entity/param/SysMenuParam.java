@@ -19,4 +19,6 @@ public class SysMenuParam extends BaseParam {
 
     private String hidden;
 
+    private String parentId;
+
 }
