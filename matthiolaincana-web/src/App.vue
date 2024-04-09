@@ -1,0 +1,257 @@
+<template>
+  <router-view :class="[mode]" />
+</template>
+<script setup lang="ts">
+import { computed, onMounted } from 'vue';
+import config from '@/config/style';
+import { useSettingStore } from '@/store';
+
+const store = useSettingStore();
+
+const mode = computed(() => {
+  return store.displayMode;
+});
+
+onMounted(() => {
+  store.updateConfig({ ...config });
+});
+</script>
+<style lang="less" scoped>
+@import '@/style/variables.less';
+
+#nprogress .bar {
+  background: var(--td-brand-color) !important;
+}
+
+.first-loading-wrp {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  min-height:420px;
+  height:100%
+}
+.first-loading-wrp > h1 {
+  font-size:128px
+}
+.first-loading-wrp .loading-wrp{
+  padding:88px;
+  display:flex;
+  justify-content:center;
+  align-items:center
+}
+.dot{
+  animation:antRotate 1.2s infinite linear;
+  transform:rotate(45deg);position:relative;
+  display:inline-block;
+  font-size:32px;
+  width:32px;
+  height:32px;
+  box-sizing:border-box
+}
+.dot i{
+  width:14px;
+  height:14px;
+  position:absolute;
+  display:block;
+  background-color:#1890ff;
+  border-radius:100%;
+  transform:scale(.75);
+  transform-origin:50% 50%;
+  opacity:.3;
+  animation:antSpinMove 1s infinite linear alternate
+}
+.dot i:nth-child(1){
+  top:0;
+  left:0
+}
+.dot i:nth-child(2){
+  top:0;
+  right:0;
+  -webkit-animation-delay:.4s;
+  animation-delay:.4s
+}
+.dot i:nth-child(3){
+  right:0;
+  bottom:0;
+  -webkit-animation-delay:.8s;
+  animation-delay:.8s
+}
+.dot i:nth-child(4){
+  bottom:0;
+  left:0;
+  -webkit-animation-delay:1.2s;
+  animation-delay:1.2s
+}
+@keyframes antRotate{
+  to{
+    -webkit-transform:rotate(405deg);
+    transform:rotate(405deg)
+  }
+}
+@-webkit-keyframes antRotate{
+  to{
+    -webkit-transform:rotate(405deg);
+    transform:rotate(405deg)
+  }
+}
+@keyframes antSpinMove{
+  to{
+    opacity:1
+  }
+}
+@-webkit-keyframes antSpinMove{
+  to{
+    opacity:1
+  }
+}
+
+
+.matt-spinner, .matt-spinner * {
+  box-sizing: border-box;
+}
+
+.matt-spinner {
+  height: 55px;
+  width: 55px;
+  position: relative;
+}
+
+.matt-spinner .atom-spinner {
+  height: 55px;
+  width: 55px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.matt-spinner .orbit-spinner {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  perspective: 800px;
+  position: absolute;
+}
+
+.orbit-spinner .orbit {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.orbit-spinner .orbit:nth-child(1) {
+  left: 0%;
+  top: 0%;
+  animation: orbit-spinner-orbit-one-animation 1200ms linear infinite;
+  border-bottom: 3px solid var(--td-brand-color);
+}
+
+.orbit-spinner .orbit:nth-child(2) {
+  right: 0%;
+  top: 0%;
+  animation: orbit-spinner-orbit-two-animation 1200ms linear infinite;
+  border-right: 3px solid var(--td-brand-color);
+}
+
+.orbit-spinner .orbit:nth-child(3) {
+  right: 0%;
+  bottom: 0%;
+  animation: orbit-spinner-orbit-three-animation 1200ms linear infinite;
+  border-top: 3px solid var(--td-brand-color);
+}
+
+@keyframes orbit-spinner-orbit-one-animation {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+
+@keyframes orbit-spinner-orbit-two-animation {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes orbit-spinner-orbit-three-animation {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
+
+
+
+
+.atom-spinner .spinner-inner {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.atom-spinner .spinner-circle {
+  display: block;
+  position: absolute;
+  color: var(--td-brand-color);
+  font-size: calc(60px * 0.24);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.atom-spinner .spinner-line {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation-duration: 1s;
+  border-left-width: calc(60px / 25);
+  border-top-width: calc(60px / 25);
+  border-left-color: var(--td-brand-color);
+  border-left-style: solid;
+  border-top-style: solid;
+  border-top-color: transparent;
+}
+
+.atom-spinner .spinner-line:nth-child(1) {
+  animation: atom-spinner-animation-1 1s linear infinite;
+  transform: rotateZ(120deg) rotateX(66deg) rotateZ(0deg);
+}
+
+.atom-spinner .spinner-line:nth-child(2) {
+  animation: atom-spinner-animation-2 1s linear infinite;
+  transform: rotateZ(240deg) rotateX(66deg) rotateZ(0deg);
+}
+
+.atom-spinner .spinner-line:nth-child(3) {
+  animation: atom-spinner-animation-3 1s linear infinite;
+  transform: rotateZ(360deg) rotateX(66deg) rotateZ(0deg);
+}
+
+@keyframes atom-spinner-animation-1 {
+  100% {
+    transform: rotateZ(120deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes atom-spinner-animation-2 {
+  100% {
+    transform: rotateZ(240deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+
+@keyframes atom-spinner-animation-3 {
+  100% {
+    transform: rotateZ(360deg) rotateX(66deg) rotateZ(360deg);
+  }
+}
+</style>
