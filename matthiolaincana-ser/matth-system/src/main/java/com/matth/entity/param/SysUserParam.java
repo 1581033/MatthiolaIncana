@@ -29,6 +29,8 @@ public class SysUserParam extends BaseParam {
 
     private String password;
 
+    private boolean enabled;
+
     private List<String> dateTime;
 
 }
