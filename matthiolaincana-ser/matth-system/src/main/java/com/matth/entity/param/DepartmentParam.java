@@ -19,4 +19,6 @@ public class DepartmentParam extends BaseParam {
 
     private String code;
 
+    private String name;
+
 }
