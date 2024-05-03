@@ -1,7 +1,10 @@
 package com.matth.entity.param;
 
+import com.matth.entity.model.SysDepartment;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 /**
  * @author Matthiola incana
@@ -20,5 +23,7 @@ public class DepartmentParam extends BaseParam {
     private String code;
 
     private String name;
+
+    private List<SysDepartment> children;
 
 }
