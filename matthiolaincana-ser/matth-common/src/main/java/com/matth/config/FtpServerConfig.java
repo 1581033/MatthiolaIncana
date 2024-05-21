@@ -1,6 +1,7 @@
 package com.matth.config;
 
 import cn.hutool.extra.ftp.Ftp;
+import cn.hutool.extra.ftp.FtpMode;
 import com.matth.entity.model.FtpConfig;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,7 @@ public class FtpServerConfig {
 
     public String upload(String fileName,InputStream inputStream) throws IOException {
         Ftp ftp = new Ftp(ftpConfig.getHost(),ftpConfig.getPort(),ftpConfig.getUsername(),ftpConfig.getPassword());
+        ftp.setMode(FtpMode.Passive);
         ftp.upload(ftpConfig.getDestPath(),fileName,inputStream);
         ftp.close();
         return String.format("http://%s:%d%s%s",ftpConfig.getHost(),ftpConfig.getPort(),ftpConfig.getDestPath(),fileName);
