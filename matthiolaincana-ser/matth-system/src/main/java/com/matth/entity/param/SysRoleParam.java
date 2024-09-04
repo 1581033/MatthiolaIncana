@@ -14,7 +14,7 @@ import java.util.List;
 public class SysRoleParam extends BaseParam {
 
     private String id;
-    
+
     private String name;
 
     private Integer status;
