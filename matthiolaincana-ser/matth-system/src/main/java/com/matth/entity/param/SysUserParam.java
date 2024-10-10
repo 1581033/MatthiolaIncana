@@ -33,4 +33,6 @@ public class SysUserParam extends BaseParam {
 
     private List<String> dateTime;
 
+    private String test;
+
 }
