@@ -35,4 +35,6 @@ public class SysUserParam extends BaseParam {
 
     private String test;
 
+    private String test1;
+
 }
